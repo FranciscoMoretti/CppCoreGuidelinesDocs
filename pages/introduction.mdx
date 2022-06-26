@@ -36,10 +36,10 @@ Remember:
 
 Take the time to understand the implications of a guideline rule on your program.
 
-These guidelines are designed according to the "subset of superset" principle ([Stroustrup05](/stdlib#Stroustrup05)).
+These guidelines are designed according to the "subset of superset" principle ([Stroustrup05](/unclassified#Stroustrup05)).
 
 They do not simply define a subset of C++ to be used (for reliability, safety, performance, or whatever).
-Instead, they strongly recommend the use of a few simple "extensions" ([library components](/stdlib#S-gsl))
+Instead, they strongly recommend the use of a few simple "extensions" ([library components](/gsl#S-gsl))
 
 that make the use of the most error-prone features of C++ redundant, so that they can be banned (in our set of rules).
 
@@ -58,7 +58,7 @@ For example, hard-real-time programmers typically can't use free store (dynamic 
 We encourage the development of such more specific rules as addenda to these core guidelines.
 Build your ideal small foundation library and use that, rather than lowering your level of programming to glorified assembly code.
 
-The rules are designed to allow [gradual adoption](/stdlib#S-modernizing).
+The rules are designed to allow [gradual adoption](/modernizing#S-modernizing).
 
 
 Some rules aim to increase various forms of safety while others aim to reduce the likelihood of accidents, many do both.
@@ -81,12 +81,12 @@ That is, a tool looks for violations and the tool returns links to violated rule
 The rules then provide reasons, examples of potential consequences of the violation, and suggested remedies.
 
 These guidelines are not intended to be a substitute for a tutorial treatment of C++.
-If you need a tutorial for some given level of experience, see [the references](/stdlib#S-references).
+If you need a tutorial for some given level of experience, see [the references](/references#S-references).
 
 
 This is not a guide on how to convert old C++ code to more modern code.
 It is meant to articulate ideas for new code in a concrete fashion.
-However, see [the modernization section](/stdlib#S-modernizing) for some possible approaches to modernizing/rejuvenating/upgrading.
+However, see [the modernization section](/modernizing#S-modernizing) for some possible approaches to modernizing/rejuvenating/upgrading.
 
 Importantly, the rules support gradual adoption: It is typically infeasible to completely convert a large code base all at once.
 
@@ -167,7 +167,7 @@ where
 * `tag` is the anchor name of the item where the Enforcement rule appears (e.g., for [C.134](/class#Rh-public) it is "Rh-public"), the
 
 name of a profile group-of-rules ("type", "bounds", or "lifetime"),
-or a specific rule in a profile ([type.4](/stdlib#Pro-type-cstylecast), or [bounds.2](/stdlib#Pro-bounds-arrayindex))
+or a specific rule in a profile ([type.4](/profile#Pro-type-cstylecast), or [bounds.2](/profile#Pro-bounds-arrayindex))
 
 
 
@@ -196,7 +196,7 @@ We hope that "mechanical" tools will improve with time to approximate what such 
 Also, we assume that the rules will be refined over time to make them more precise and checkable.
 
 A rule is aimed at being simple, rather than carefully phrased to mention every alternative and special case.
-Such information is found in the **Alternative** paragraphs and the [Discussion](/stdlib#S-discussion) sections.
+Such information is found in the **Alternative** paragraphs and the [Discussion](/discussion#S-discussion) sections.
 
 If you don't understand a rule or disagree with it, please visit its **Discussion**.
 If you feel that a discussion is missing or incomplete, enter an [Issue](https://github.com/isocpp/CppCoreGuidelines/issues)
@@ -212,7 +212,7 @@ For example, many examples are language-technical and use names like `f`, `base`
 
 This is not a language manual.
 It is meant to be helpful, rather than complete, fully accurate on technical details, or a guide to existing code.
-Recommended information sources can be found in [the references](/stdlib#S-references).
+Recommended information sources can be found in [the references](/references#S-references).
 
 
 ## <a name="SS-sec"></a>In.sec: Major sections
@@ -252,31 +252,31 @@ Recommended information sources can be found in [the references](/stdlib#S-refer
 
 Supporting sections:
 
-* [A: Architectural ideas](/stdlib#S-A)
+* [A: Architectural ideas](/A#S-A)
 
-* [NR: Non-Rules and myths](/stdlib#S-not)
+* [NR: Non-Rules and myths](/not#S-not)
 
-* [RF: References](/stdlib#S-references)
+* [RF: References](/references#S-references)
 
-* [Pro: Profiles](/stdlib#S-profile)
+* [Pro: Profiles](/profile#S-profile)
 
-* [GSL: Guidelines support library](/stdlib#S-gsl)
+* [GSL: Guidelines support library](/gsl#S-gsl)
 
-* [NL: Naming and layout suggestions](/stdlib#S-naming)
+* [NL: Naming and layout suggestions](/naming#S-naming)
 
-* [FAQ: Answers to frequently asked questions](/stdlib#S-faq)
+* [FAQ: Answers to frequently asked questions](/faq#S-faq)
 
-* [Appendix A: Libraries](/stdlib#S-libraries)
+* [Appendix A: Libraries](/libraries#S-libraries)
 
-* [Appendix B: Modernizing code](/stdlib#S-modernizing)
+* [Appendix B: Modernizing code](/modernizing#S-modernizing)
 
-* [Appendix C: Discussion](/stdlib#S-discussion)
+* [Appendix C: Discussion](/discussion#S-discussion)
 
-* [Appendix D: Supporting tools](/stdlib#S-tools)
+* [Appendix D: Supporting tools](/tools#S-tools)
 
-* [Glossary](/stdlib#S-glossary)
+* [Glossary](/glossary#S-glossary)
 
-* [To-do: Unclassified proto-rules](/stdlib#S-unclassified)
+* [To-do: Unclassified proto-rules](/unclassified#S-unclassified)
 
 
 These sections are not orthogonal.

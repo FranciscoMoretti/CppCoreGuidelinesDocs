@@ -548,7 +548,7 @@ Passing a shared smart pointer (e.g., `std::shared_ptr`) implies a run-time cost
 
 ##### Note
 
-We can catch many common cases of dangling pointers statically (see [lifetime safety profile](/stdlib#SS-lifetime)). Function arguments naturally live for the lifetime of the function call, and so have fewer lifetime problems.
+We can catch many common cases of dangling pointers statically (see [lifetime safety profile](/profile#SS-lifetime)). Function arguments naturally live for the lifetime of the function call, and so have fewer lifetime problems.
 
 
 ##### Enforcement
@@ -1110,7 +1110,7 @@ better
 
 **Also**: Assume that a `T*` obtained from a smart pointer to `T` (e.g., `unique_ptr<T>`) points to a single element.
 
-**See also**: [Support library](/stdlib#S-gsl)
+**See also**: [Support library](/gsl#S-gsl)
 
 
 **See also**: [Do not pass an array as a single pointer](/interfaces#Ri-array)
@@ -1213,7 +1213,7 @@ A `span<T>` object does not own its elements and is so small that it can be pass
 
 Passing a `span` object as an argument is exactly as efficient as passing a pair of pointer arguments or passing a pointer and an integer count.
 
-**See also**: [Support library](/stdlib#S-gsl)
+**See also**: [Support library](/gsl#S-gsl)
 
 
 ##### Enforcement
@@ -1250,7 +1250,7 @@ When I call `length(s)` should I check if `s` is `nullptr` first? Should the imp
 
 `zstring` does not represent ownership.
 
-**See also**: [Support library](/stdlib#S-gsl)
+**See also**: [Support library](/gsl#S-gsl)
 
 
 ### <a name="Rf-unique_ptr"></a>F.26: Use a `unique_ptr<T>` to transfer ownership where a pointer is needed
@@ -1528,7 +1528,7 @@ A returned rvalue reference goes out of scope at the end of the full expression 
 This kind of use is a frequent source of bugs, often incorrectly reported as a compiler bug.
 An implementer of a function should avoid setting such traps for users.
 
-The [lifetime safety profile](/stdlib#SS-lifetime) will (when completely implemented) catch such problems.
+The [lifetime safety profile](/profile#SS-lifetime) will (when completely implemented) catch such problems.
 
 
 

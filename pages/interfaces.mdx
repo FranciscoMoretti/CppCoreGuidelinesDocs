@@ -402,7 +402,7 @@ Some preconditions can be expressed as assertions. For example:
 
 Ideally, that `Expects(x >= 0)` should be part of the interface of `sqrt()` but that's not easily done. For now, we place it in the definition (function body).
 
-**References**: `Expects()` is described in [GSL](/stdlib#S-gsl).
+**References**: `Expects()` is described in [GSL](/gsl#S-gsl).
 
 
 ##### Note
@@ -740,7 +740,7 @@ However, that is less elegant and often less efficient than returning the object
 so use smart pointers only if reference semantics are needed.
 
 **Alternative**: Sometimes older code can't be modified because of ABI compatibility requirements or lack of resources.
-In that case, mark owning pointers using `owner` from the [guidelines support library](/stdlib#S-gsl):
+In that case, mark owning pointers using `owner` from the [guidelines support library](/gsl#S-gsl):
 
 ```cpp
     owner<X*> compute(args)    // It is now clear that ownership is transferred
@@ -803,7 +803,7 @@ By stating the intent in source, implementers and tools can provide better diagn
 
 ##### Note
 
-`not_null` is defined in the [guidelines support library](/stdlib#S-gsl).
+`not_null` is defined in the [guidelines support library](/gsl#S-gsl).
 
 
 ##### Note
@@ -876,7 +876,7 @@ This `draw2()` passes the same amount of information to `draw()`, but makes the 
 ##### Exception
 
 Use `zstring` and `czstring` to represent C-style, zero-terminated strings.
-But when doing so, use `std::string_view` or `span<char>` from the [GSL](/stdlib#S-gsl) to prevent range errors.
+But when doing so, use `std::string_view` or `span<char>` from the [GSL](/gsl#S-gsl) to prevent range errors.
 
 
 ##### Enforcement

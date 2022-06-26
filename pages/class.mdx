@@ -113,7 +113,7 @@ This effectively means the definer need to define an invariant.
 
 * [define a class with private data as `class`](/class#Rc-class)
 
-* [Prefer to place the interface first in a class](/stdlib#Rl-order)
+* [Prefer to place the interface first in a class](/naming#Rl-order)
 
 * [minimize exposure of members](/class#Rc-private)
 
@@ -309,7 +309,7 @@ All of this decreases readability and complicates maintenance.
 
 ##### Note
 
-Prefer to place the interface first in a class, [see NL.16](/stdlib#Rl-order).
+Prefer to place the interface first in a class, [see NL.16](/naming#Rl-order).
 
 
 ##### Enforcement
@@ -406,7 +406,7 @@ For example, a derived class might be allowed to skip a run-time check because i
 
 ##### Note
 
-Prefer the order `public` members before `protected` members before `private` members [see](/stdlib#Rl-order).
+Prefer the order `public` members before `protected` members before `private` members [see](/naming#Rl-order).
 
 
 ##### Enforcement
@@ -963,7 +963,7 @@ What about a socket that won't close? A destructor, close, or cleanup operation 
 
 If it does nevertheless, we have a problem that has no really good solution.
 For starters, the writer of a destructor does not know why the destructor is called and cannot "refuse to act" by throwing an exception.
-See [discussion](/stdlib#Sd-never-fail).
+See [discussion](/discussion#Sd-never-fail).
 
 To make the problem worse, many "close/release" operations are not retryable.
 Many have tried to solve this problem, but no general solution is known.
@@ -1102,7 +1102,7 @@ In general, the writer of a base class does not know the appropriate action to b
 
 ##### Discussion
 
-See [this in the Discussion section](/stdlib#Sd-dtor).
+See [this in the Discussion section](/discussion#Sd-dtor).
 
 
 ##### Example, bad
@@ -1188,7 +1188,7 @@ Many have tried to devise a fool-proof scheme for dealing with failure in destru
 None have succeeded to come up with a general scheme.
 This can be a real practical problem: For example, what about a socket that won't close?
 The writer of a destructor does not know why the destructor is called and cannot "refuse to act" by throwing an exception.
-See [discussion](/stdlib#Sd-never-fail).
+See [discussion](/discussion#Sd-never-fail).
 
 To make the problem worse, many "close/release" operations are not retryable.
 If at all possible, consider failure to close/cleanup a fundamental design error and terminate.
@@ -1751,7 +1751,7 @@ To minimize confusion and errors. That is the order in which the initialization 
 
 (Simple) A member initializer list should mention the members in the same order they are declared.
 
-**See also**: [Discussion](/stdlib#Sd-order)
+**See also**: [Discussion](/discussion#Sd-order)
 
 
 ### <a name="Rc-in-class-initializer"></a>C.48: Prefer in-class initializers to member initializers in constructors for constant initializers
@@ -1933,7 +1933,7 @@ By providing the factory function `create()`, we make construction (on the free 
 
 Conventional factory functions allocate on the free store, rather than on the stack or in an enclosing object.
 
-**See also**: [Discussion](/stdlib#Sd-factory)
+**See also**: [Discussion](/discussion#Sd-factory)
 
 
 ### <a name="Rc-delegating"></a>C.51: Use delegating constructors to represent common actions for all constructors of a class
@@ -2065,7 +2065,7 @@ It is simple and efficient. If you want to optimize for rvalues, provide an over
 
 ##### Note
 
-The `swap` implementation technique offers the [strong guarantee](/stdlib#Abrahams01).
+The `swap` implementation technique offers the [strong guarantee](/unclassified#Abrahams01).
 
 
 ##### Example
@@ -2097,7 +2097,7 @@ But what if you can get significantly better performance by not making a tempora
     }
 ```
 
-By writing directly to the target elements, we will get only [the basic guarantee](/stdlib#Abrahams01) rather than the strong guarantee offered by the `swap` technique. Beware of [self-assignment](/class#Rc-copy-self).
+By writing directly to the target elements, we will get only [the basic guarantee](/unclassified#Abrahams01) rather than the strong guarantee offered by the `swap` technique. Beware of [self-assignment](/class#Rc-copy-self).
 
 
 
@@ -3801,7 +3801,7 @@ Copying a polymorphic class is discouraged due to the slicing problem, see [C.67
     };
 ```
 
-Generally, it is recommended to use smart pointers to represent ownership (see [R.20](/resource#Rr-owner)). However, because of language rules, the covariant return type cannot be a smart pointer: `D::clone` can't return a `unique_ptr<D>` while `B::clone` returns `unique_ptr<B>`. Therefore, you either need to consistently return `unique_ptr<B>` in all overrides, or use `owner<>` utility from the [Guidelines Support Library](/stdlib#SS-views).
+Generally, it is recommended to use smart pointers to represent ownership (see [R.20](/resource#Rr-owner)). However, because of language rules, the covariant return type cannot be a smart pointer: `D::clone` can't return a `unique_ptr<D>` while `B::clone` returns `unique_ptr<B>`. Therefore, you either need to consistently return `unique_ptr<B>` in all overrides, or use `owner<>` utility from the [Guidelines Support Library](/gsl#SS-views).
 
 
 
@@ -4408,7 +4408,7 @@ Consider:
 ##### Enforcement
 
 * Flag all uses of `static_cast` for downcasts, including C-style casts that perform a `static_cast`.
-* This rule is part of the [type-safety profile](/stdlib#Pro-type-downcast).
+* This rule is part of the [type-safety profile](/profile#Pro-type-downcast).
 
 
 ### <a name="Rh-ref-cast"></a>C.147: Use `dynamic_cast` to a reference type when failure to find the required class is considered an error
@@ -4875,7 +4875,7 @@ Tricky. Requires semantic insight.
 
 ### <a name="Ro-namespace"></a>C.168: Define overloaded operators in the namespace of their operands
 
-##### Reason
+##### Reason    
 
 Readability.
 Ability for find operators using ADL.

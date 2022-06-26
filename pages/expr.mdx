@@ -2,7 +2,7 @@
 
 Expressions and statements are the lowest and most direct way of expressing actions and computation. Declarations in local scopes are statements.
 
-For naming, commenting, and indentation rules, see [NL: Naming and layout](/stdlib#S-naming).
+For naming, commenting, and indentation rules, see [NL: Naming and layout](/naming#S-naming).
 
 
 General rules:
@@ -1915,7 +1915,7 @@ If you want to pass an array, say so:
 * Flag any indexing expression on an expression or variable of array type (either static array or `std::array`) where the indexer is not a compile-time constant expression with a value between `0` and the upper bound of the array.
 * Flag any expression that would rely on implicit conversion of an array type to a pointer type.
 
-This rule is part of the [bounds-safety profile](/stdlib#SS-bounds).
+This rule is part of the [bounds-safety profile](/profile#SS-bounds).
 
 
 
@@ -2142,7 +2142,7 @@ are seriously overused as well as a major source of errors.
 
 If you feel the need for a lot of casts, there might be a fundamental design problem.
 
-The [type profile](/stdlib#Pro-type-reinterpretcast) bans `reinterpret_cast` and C-style casts.
+The [type profile](/profile#Pro-type-reinterpretcast) bans `reinterpret_cast` and C-style casts.
 
 
 Never cast to `(void)` to ignore a `[[nodiscard]]`return value.
@@ -2163,9 +2163,9 @@ Casts are widely (mis)used. Modern C++ has rules and constructs that eliminate t
 * Flag all C-style casts, including to `void`.
 * Flag functional style casts using `Type(value)`. Use `Type{value}` instead which is not narrowing. (See [ES.64](/expr#Res-construct).)
 
-* Flag [identity casts](/stdlib#Pro-type-identitycast) between pointer types, where the source and target types are the same (/stdlib#Pro-type-identitycast).
+* Flag [identity casts](/profile#Pro-type-identitycast) between pointer types, where the source and target types are the same (/profile#Pro-type-identitycast).
 
-* Flag an explicit pointer cast that could be [implicit](/stdlib#Pro-type-implicitpointercast).
+* Flag an explicit pointer cast that could be [implicit](/profile#Pro-type-implicitpointercast).
 
 
 ### <a name="Res-casts-named"></a>ES.49: If you must use a cast, use a named cast
@@ -2233,9 +2233,9 @@ for example.)
 * Flag all C-style casts, including to `void`.
 * Flag functional style casts using `Type(value)`. Use `Type{value}` instead which is not narrowing. (See [ES.64](/expr#Res-construct).)
 
-* The [type profile](/stdlib#Pro-type-reinterpretcast) bans `reinterpret_cast`.
+* The [type profile](/profile#Pro-type-reinterpretcast) bans `reinterpret_cast`.
 
-* The [type profile](/stdlib#Pro-type-arithmeticcast) warns when using `static_cast` between arithmetic types.
+* The [type profile](/profile#Pro-type-arithmeticcast) warns when using `static_cast` between arithmetic types.
 
 
 ### <a name="Res-casts-const"></a>ES.50: Don't cast away `const`
@@ -2430,7 +2430,7 @@ In any variant, we must guard against data races on the `cache` in multi-threade
 ##### Enforcement
 
 * Flag `const_cast`s.
-* This rule is part of the [type-safety profile](/stdlib#Pro-type-constcast) for the related Profile.
+* This rule is part of the [type-safety profile](/profile#Pro-type-constcast) for the related Profile.
 
 
 ### <a name="Res-range-checking"></a>ES.55: Avoid the need for range checking
@@ -2536,7 +2536,7 @@ The language already knows the common cases where objects can be moved from, esp
 Never write `std::move()` just because you've heard "it's more efficient."
 In general, don't believe claims of "efficiency" without data (???).
 In general, don't complicate your code without reason (??).
-Never write `std::move()` on a const object, it is silently transformed into a copy (see Item 23 in [Meyers15](/stdlib#Meyers15))
+Never write `std::move()` on a const object, it is silently transformed into a copy (see Item 23 in [Meyers15](/unclassified#Meyers15))
 
 
 ##### Example, bad
@@ -2841,7 +2841,7 @@ wrong results, or memory corruption.
 
 This rule is an obvious and well-known language rule, but can be hard to follow.
 It takes good coding style, library support, and static analysis to eliminate violations without major overhead.
-This is a major part of the discussion of [C++'s model for type- and resource-safety](/stdlib#Stroustrup15).
+This is a major part of the discussion of [C++'s model for type- and resource-safety](/unclassified#Stroustrup15).
 
 
 **See also**:
@@ -2854,7 +2854,7 @@ This is a major part of the discussion of [C++'s model for type- and resource-sa
 
 * Use [not_null](/functions#Rf-nullptr) to catch unexpected `nullptr` early.
 
-* Use the [bounds profile](/stdlib#SS-bounds) to avoid range errors.
+* Use the [bounds profile](/profile#SS-bounds) to avoid range errors.
 
 
 
@@ -2982,7 +2982,7 @@ Remember that there are other ways of getting an invalid pointer.
 
 ##### Enforcement
 
-This rule is part of the [lifetime safety profile](/stdlib#SS-lifetime)
+This rule is part of the [lifetime safety profile](/profile#SS-lifetime)
 
 
 * Flag a dereference of a pointer that points to an object that has gone out of scope

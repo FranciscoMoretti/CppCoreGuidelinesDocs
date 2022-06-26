@@ -93,7 +93,7 @@ A well-designed library expresses intent (what is to be done, rather than just h
 
 A C++ programmer should know the basics of the standard library, and use it where appropriate.
 Any programmer should know the basics of the foundation libraries of the project being worked on, and use them appropriately.
-Any programmer using these guidelines should know the [guidelines support library](/stdlib#S-gsl), and use it appropriately.
+Any programmer using these guidelines should know the [guidelines support library](/gsl#S-gsl), and use it appropriately.
 
 
 ##### Example
@@ -193,7 +193,7 @@ The last variant makes it clear that we are not interested in the order in which
 
 A programmer should be familiar with
 
-* [The guidelines support library](/stdlib#S-gsl)
+* [The guidelines support library](/gsl#S-gsl)
 
 * [The ISO C++ Standard Library](/stdlib#S-stdlib)
 
@@ -599,7 +599,7 @@ However, relying on abstractions that implicitly clean up can be as simple, and 
 
 ##### Note
 
-Enforcing [the lifetime safety profile](/stdlib#SS-lifetime) eliminates leaks.
+Enforcing [the lifetime safety profile](/profile#SS-lifetime) eliminates leaks.
 
 When combined with resource safety provided by [RAII](/resource#Rr-raii), it eliminates the need for "garbage collection" (by generating no garbage).
 
@@ -610,7 +610,7 @@ Combine this with enforcement of [the type and bounds profiles](/introduction#SS
 
 * Look at pointers: Classify them into non-owners (the default) and owners.
   Where feasible, replace owners with standard-library resource handles (as in the example above).
-  Alternatively, mark an owner as such using `owner` from [the GSL](/stdlib#S-gsl).
+  Alternatively, mark an owner as such using `owner` from [the GSL](/gsl#S-gsl).
 
 * Look for naked `new` and `delete`
 * Look for known resource allocating functions returning raw pointers (such as `fopen`, `malloc`, and `strdup`)
@@ -818,7 +818,7 @@ By default use
 
 * The [ISO C++ Standard Library](/stdlib#S-stdlib)
 
-* The [Guidelines Support Library](/stdlib#S-gsl)
+* The [Guidelines Support Library](/gsl#S-gsl)
 
 
 ##### Note

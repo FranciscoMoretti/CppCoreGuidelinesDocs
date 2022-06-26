@@ -137,7 +137,7 @@ Some systems, such as hard-real-time systems require a guarantee that an action 
 **See also**: [RAII](/errors#Re-raii)
 
 
-**See also**: [discussion](/stdlib#Sd-noexcept)
+**See also**: [discussion](/discussion#Sd-noexcept)
 
 
 ##### Note
@@ -407,7 +407,7 @@ Do not use traditional [exception-specifications](/errors#Re-specifications).
 
 ##### See also
 
-[discussion](/stdlib#Sd-noexcept).
+[discussion](/discussion#Sd-noexcept).
 
 
 ### <a name="Re-never-throw"></a>E.13: Never throw while being the direct owner of an object
@@ -616,7 +616,7 @@ Also, [make move operations `noexcept`](/class#Rc-move-noexcept).
 Catch destructors, deallocation operations, and `swap`s that `throw`.
 Catch such operations that are not `noexcept`.
 
-**See also**: [discussion](/stdlib#Sd-never-fail)
+**See also**: [discussion](/discussion#Sd-never-fail)
 
 
 ### <a name="Re-not-always"></a>E.17: Don't try to catch every exception in every function
@@ -1100,7 +1100,7 @@ The policy of letting exceptions propagate until they reach a function that pote
 ##### Note
 
 No. This would not be any better had exception specifications been statically enforced.
-For example, see [Stroustrup94](/stdlib#Stroustrup94).
+For example, see [Stroustrup94](/unclassified#Stroustrup94).
 
 
 ##### Note
