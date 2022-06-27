@@ -1,4 +1,4 @@
-# <a name="S-expr"></a>ES: Expressions and statements
+# <a href="#" name="S-expr"></a>ES: Expressions and statements
 
 Expressions and statements are the lowest and most direct way of expressing actions and computation. Declarations in local scopes are statements.
 
@@ -151,7 +151,7 @@ Arithmetic rules:
 * [ES.107: Don't use `unsigned` for subscripts, prefer `gsl::index`](/expr#Res-subscripts)
 
 
-### <a name="Res-lib"></a>ES.1: Prefer the standard library to other libraries and to "handcrafted code"
+### <a href="#" name="Res-lib"></a>ES.1: Prefer the standard library to other libraries and to "handcrafted code"
 
 ##### Reason
 
@@ -185,7 +185,7 @@ Large parts of the standard library rely on dynamic allocation (free store). The
 
 Not easy. ??? Look for messy loops, nested loops, long functions, absence of function calls, lack of use of non-built-in types. Cyclomatic complexity?
 
-### <a name="Res-abstr"></a>ES.2: Prefer suitable abstractions to direct use of language features
+### <a href="#" name="Res-abstr"></a>ES.2: Prefer suitable abstractions to direct use of language features
 
 ##### Reason
 
@@ -224,7 +224,7 @@ Once the checking for overflow and error handling has been added that code gets 
 
 Not easy. ??? Look for messy loops, nested loops, long functions, absence of function calls, lack of use of non-built-in types. Cyclomatic complexity?
 
-### <a name="Res-DRY"></a>ES.3: Don't repeat yourself, avoid redundant code
+### <a href="#" name="Res-DRY"></a>ES.3: Don't repeat yourself, avoid redundant code
 
 Duplicated or otherwise redundant code obscures intent, makes it harder to understand the logic, and makes maintenance harder, among other problems. It often arises from cut-and-paste programming.
 
@@ -272,7 +272,7 @@ Use standard algorithms where appropriate, instead of writing some own implement
 
 A declaration is a statement. A declaration introduces a name into a scope and might cause the construction of a named object.
 
-### <a name="Res-scope"></a>ES.5: Keep scopes small
+### <a href="#" name="Res-scope"></a>ES.5: Keep scopes small
 
 ##### Reason
 
@@ -337,7 +337,7 @@ In this case, it might be a good idea to factor out the read:
 * Flag loop variable declared outside a loop and not used after the loop
 * Flag when expensive resources, such as file handles and locks are not used for N-lines (for some suitable N)
 
-### <a name="Res-cond"></a>ES.6: Declare names in for-statement initializers and conditions to limit scope
+### <a href="#" name="Res-cond"></a>ES.6: Declare names in for-statement initializers and conditions to limit scope
 
 ##### Reason
 
@@ -407,7 +407,7 @@ Note: C++17 and C++20 also add `if`, `switch`, and range-`for` initializer state
 * Flag selection/loop variables declared before the body and not used after the body
 * (hard) Flag selection/loop variables declared before the body and used after the body for an unrelated purpose.
 
-### <a name="Res-name-length"></a>ES.7: Keep common and local names short, and keep uncommon and non-local names longer
+### <a href="#" name="Res-name-length"></a>ES.7: Keep common and local names short, and keep uncommon and non-local names longer
 
 ##### Reason
 
@@ -482,7 +482,7 @@ We recommend keeping functions short, but that rule isn't universally adhered to
 
 Check length of local and non-local names. Also take function length into account.
 
-### <a name="Res-name-similar"></a>ES.8: Avoid similar-looking names
+### <a href="#" name="Res-name-similar"></a>ES.8: Avoid similar-looking names
 
 ##### Reason
 
@@ -511,7 +511,7 @@ Antique header files might declare non-types and types with the same name in the
 * Check names against a list of known confusing letter and digit combinations.
 * Flag a declaration of a variable, function, or enumerator that hides a class or enumeration declared in the same scope.
 
-### <a name="Res-not-CAPS"></a>ES.9: Avoid `ALL_CAPS` names
+### <a href="#" name="Res-not-CAPS"></a>ES.9: Avoid `ALL_CAPS` names
 
 ##### Reason
 
@@ -545,7 +545,7 @@ Do not use `ALL_CAPS` for constants just because constants used to be macros.
 
 Flag all uses of ALL CAPS. For older code, accept ALL CAPS for macro names and flag all non-ALL-CAPS macro names.
 
-### <a name="Res-name-one"></a>ES.10: Declare one name (only) per declaration
+### <a href="#" name="Res-name-one"></a>ES.10: Declare one name (only) per declaration
 
 ##### Reason
 
@@ -611,7 +611,7 @@ In a long list of declarators it is easy to overlook an uninitialized variable.
 
 Flag variable and constant declarations with multiple declarators (e.g., `int* p, q;`)
 
-### <a name="Res-auto"></a>ES.11: Use `auto` to avoid redundant repetition of type names
+### <a href="#" name="Res-auto"></a>ES.11: Use `auto` to avoid redundant repetition of type names
 
 ##### Reason
 
@@ -669,7 +669,7 @@ As of C++20, we can (and should) use concepts to be more specific about the type
 
 Flag redundant repetition of type names in a declaration.
 
-### <a name="Res-reuse"></a>ES.12: Do not reuse names in nested scopes
+### <a href="#" name="Res-reuse"></a>ES.12: Do not reuse names in nested scopes
 
 ##### Reason
 
@@ -770,7 +770,7 @@ For example, had we forgotten the using declaration, a call `d.f(1)` would not h
 * Flag reuse of a global name as a local variable or a member name
 * Flag reuse of a base class member name in a derived class (except for function names)
 
-### <a name="Res-always"></a>ES.20: Always initialize an object
+### <a href="#" name="Res-always"></a>ES.20: Always initialize an object
 
 ##### Reason
 
@@ -980,7 +980,7 @@ or maybe:
 * Check that an uninitialized buffer is written into *immediately* after declaration.
   Passing an uninitialized variable as a reference to non-`const` argument can be assumed to be a write into the variable.
 
-### <a name="Res-introduce"></a>ES.21: Don't introduce a variable (or constant) before you need to use it
+### <a href="#" name="Res-introduce"></a>ES.21: Don't introduce a variable (or constant) before you need to use it
 
 ##### Reason
 
@@ -997,7 +997,7 @@ Readability. To limit the scope in which the variable can be used.
 
 Flag declarations that are distant from their first use.
 
-### <a name="Res-init"></a>ES.22: Don't declare a variable until you have a value to initialize it with
+### <a href="#" name="Res-init"></a>ES.22: Don't declare a variable until you have a value to initialize it with
 
 ##### Reason
 
@@ -1042,7 +1042,7 @@ For initializers of moderate complexity, including for `const` variables, consid
 * Flag declarations with default initialization that are assigned to before they are first read.
 * Flag any complicated computation after an uninitialized variable and before its use.
 
-### <a name="Res-list"></a>ES.23: Prefer the `{}`-initializer syntax
+### <a href="#" name="Res-list"></a>ES.23: Prefer the `{}`-initializer syntax
 
 ##### Reason
 
@@ -1155,7 +1155,7 @@ Use plain `{}`-initialization unless you specifically want to disable explicit c
 * Flag uses of `=` to initialize arithmetic types where narrowing occurs.
 * Flag uses of `()` initialization syntax that are actually declarations. (Many compilers should warn on this already.)
 
-### <a name="Res-unique"></a>ES.24: Use a `unique_ptr<T>` to hold pointers
+### <a href="#" name="Res-unique"></a>ES.24: Use a `unique_ptr<T>` to hold pointers
 
 ##### Reason
 
@@ -1185,7 +1185,7 @@ The same is the case when `at()` throws.
 
 Look for raw pointers that are targets of `new`, `malloc()`, or functions that might return such pointers.
 
-### <a name="Res-const"></a>ES.25: Declare an object `const` or `constexpr` unless you want to modify its value later on
+### <a href="#" name="Res-const"></a>ES.25: Declare an object `const` or `constexpr` unless you want to modify its value later on
 
 ##### Reason
 
@@ -1207,7 +1207,7 @@ Look to see if a variable is actually mutated, and flag it if
 not. Unfortunately, it might be impossible to detect when a non-`const` was not
 *intended* to vary (vs when it merely did not vary).
 
-### <a name="Res-recycle"></a>ES.26: Don't use a variable for two unrelated purposes
+### <a href="#" name="Res-recycle"></a>ES.26: Don't use a variable for two unrelated purposes
 
 ##### Reason
 
@@ -1250,7 +1250,7 @@ As an optimization, you might want to reuse a buffer as a scratch pad, but even 
 
 Flag recycled variables.
 
-### <a name="Res-stack"></a>ES.27: Use `std::array` or `stack_array` for arrays on the stack
+### <a href="#" name="Res-stack"></a>ES.27: Use `std::array` or `stack_array` for arrays on the stack
 
 ##### Reason
 
@@ -1298,7 +1298,7 @@ The definition of `a2` is C but not C++ and is considered a security risk
 * Flag arrays with non-constant bounds (C-style VLAs)
 * Flag arrays with non-local constant bounds
 
-### <a name="Res-lambda-init"></a>ES.28: Use lambdas for complex initialization, especially of `const` variables
+### <a href="#" name="Res-lambda-init"></a>ES.28: Use lambdas for complex initialization, especially of `const` variables
 
 ##### Reason
 
@@ -1330,7 +1330,7 @@ If at all possible, reduce the conditions to a simple set of alternatives (e.g.,
 
 Hard. At best a heuristic. Look for an uninitialized variable followed by a loop assigning to it.
 
-### <a name="Res-macros"></a>ES.30: Don't use macros for program text manipulation
+### <a href="#" name="Res-macros"></a>ES.30: Don't use macros for program text manipulation
 
 ##### Reason
 
@@ -1405,7 +1405,7 @@ In the future, static reflection is likely to eliminate the last needs for the p
 
 Scream when you see a macro that isn't just used for source control (e.g., `#ifdef`)
 
-### <a name="Res-macros2"></a>ES.31: Don't use macros for constants or "functions"
+### <a href="#" name="Res-macros2"></a>ES.31: Don't use macros for constants or "functions"
 
 ##### Reason
 
@@ -1431,7 +1431,7 @@ Even if we hadn't left a well-known bug in `SQUARE` there are much better behave
 
 Scream when you see a macro that isn't just used for source control (e.g., `#ifdef`)
 
-### <a name="Res-ALL_CAPS"></a>ES.32: Use `ALL_CAPS` for all macro names
+### <a href="#" name="Res-ALL_CAPS"></a>ES.32: Use `ALL_CAPS` for all macro names
 
 ##### Reason
 
@@ -1449,7 +1449,7 @@ Convention. Readability. Distinguishing macros.
 
 Scream when you see a lower case macro.
 
-### <a name="Res-MACROS"></a>ES.33: If you must use macros, give them unique names
+### <a href="#" name="Res-MACROS"></a>ES.33: If you must use macros, give them unique names
 
 ##### Reason
 
@@ -1474,7 +1474,7 @@ If you are forced to use macros, use long names and supposedly unique prefixes (
 
 Warn against short macro names.
 
-### <a name="Res-ellipses"></a> ES.34: Don't define a (C-style) variadic function
+### <a href="#" name="Res-ellipses"></a> ES.34: Don't define a (C-style) variadic function
 
 ##### Reason
 
@@ -1569,7 +1569,7 @@ This is basically the way `printf` is implemented.
 
 Expressions manipulate values.
 
-### <a name="Res-complicated"></a>ES.40: Avoid complicated expressions
+### <a href="#" name="Res-complicated"></a>ES.40: Avoid complicated expressions
 
 ##### Reason
 
@@ -1651,7 +1651,7 @@ Tricky. How complicated must an expression be to be considered complicated? Writ
 * implementation defined behavior?
 * ???
 
-### <a name="Res-parens"></a>ES.41: If in doubt about operator precedence, parenthesize
+### <a href="#" name="Res-parens"></a>ES.41: If in doubt about operator precedence, parenthesize
 
 ##### Reason
 
@@ -1686,7 +1686,7 @@ You should know enough not to need parentheses for:
 * Flag assignment operators not as the leftmost operator.
 * ???
 
-### <a name="Res-ptr"></a>ES.42: Keep use of pointers simple and straightforward
+### <a href="#" name="Res-ptr"></a>ES.42: Keep use of pointers simple and straightforward
 
 ##### Reason
 
@@ -1919,7 +1919,7 @@ This rule is part of the [bounds-safety profile](/profile#SS-bounds).
 
 
 
-### <a name="Res-order"></a>ES.43: Avoid expressions with undefined order of evaluation
+### <a href="#" name="Res-order"></a>ES.43: Avoid expressions with undefined order of evaluation
 
 ##### Reason
 
@@ -1944,7 +1944,7 @@ A good rule of thumb is that you should not read a value twice in an expression 
 
 Can be detected by a good analyzer.
 
-### <a name="Res-order-fct"></a>ES.44: Don't depend on order of evaluation of function arguments
+### <a href="#" name="Res-order-fct"></a>ES.44: Don't depend on order of evaluation of function arguments
 
 ##### Reason
 
@@ -1980,7 +1980,7 @@ In C++17, these examples work as expected (left to right) and assignments are ev
 
 Can be detected by a good analyzer.
 
-### <a name="Res-magic"></a>ES.45: Avoid "magic constants"; use symbolic constants
+### <a href="#" name="Res-magic"></a>ES.45: Avoid "magic constants"; use symbolic constants
 
 ##### Reason
 
@@ -2013,7 +2013,7 @@ Better still, don't expose constants:
 
 Flag literals in code. Give a pass to `0`, `1`, `nullptr`, `\n`, `""`, and others on a positive list.
 
-### <a name="Res-narrowing"></a>ES.46: Avoid lossy (narrowing, truncating) arithmetic conversions
+### <a href="#" name="Res-narrowing"></a>ES.46: Avoid lossy (narrowing, truncating) arithmetic conversions
 
 ##### Reason
 
@@ -2071,7 +2071,7 @@ A good analyzer can detect all narrowing conversions. However, flagging all narr
 * Flag all `long`->`char` (I suspect `int`->`char` is very common. Here be dragons! we need data).
 * Consider narrowing conversions for function arguments especially suspect.
 
-### <a name="Res-nullptr"></a>ES.47: Use `nullptr` rather than `0` or `NULL`
+### <a href="#" name="Res-nullptr"></a>ES.47: Use `nullptr` rather than `0` or `NULL`
 
 ##### Reason
 
@@ -2094,7 +2094,7 @@ Consider:
 
 Flag uses of `0` and `NULL` for pointers. The transformation might be helped by simple program transformation.
 
-### <a name="Res-casts"></a>ES.48: Avoid casts
+### <a href="#" name="Res-casts"></a>ES.48: Avoid casts
 
 ##### Reason
 
@@ -2168,7 +2168,7 @@ Casts are widely (mis)used. Modern C++ has rules and constructs that eliminate t
 * Flag an explicit pointer cast that could be [implicit](/profile#Pro-type-implicitpointercast).
 
 
-### <a name="Res-casts-named"></a>ES.49: If you must use a cast, use a named cast
+### <a href="#" name="Res-casts-named"></a>ES.49: If you must use a cast, use a named cast
 
 ##### Reason
 
@@ -2238,7 +2238,7 @@ for example.)
 * The [type profile](/profile#Pro-type-arithmeticcast) warns when using `static_cast` between arithmetic types.
 
 
-### <a name="Res-casts-const"></a>ES.50: Don't cast away `const`
+### <a href="#" name="Res-casts-const"></a>ES.50: Don't cast away `const`
 
 ##### Reason
 
@@ -2433,7 +2433,7 @@ In any variant, we must guard against data races on the `cache` in multi-threade
 * This rule is part of the [type-safety profile](/profile#Pro-type-constcast) for the related Profile.
 
 
-### <a name="Res-range-checking"></a>ES.55: Avoid the need for range checking
+### <a href="#" name="Res-range-checking"></a>ES.55: Avoid the need for range checking
 
 ##### Reason
 
@@ -2452,7 +2452,7 @@ Constructs that cannot overflow do not overflow (and usually run faster):
 
 Look for explicit range checks and heuristically suggest alternatives.
 
-### <a name="Res-move"></a>ES.56: Write `std::move()` only when you need to explicitly move an object to another scope
+### <a href="#" name="Res-move"></a>ES.56: Write `std::move()` only when you need to explicitly move an object to another scope
 
 ##### Reason
 
@@ -2591,7 +2591,7 @@ The language already knows that a returned value is a temporary object that can 
 * Flag when `std::forward` is applied to other than a forwarding reference. (More general case of the previous rule to cover the non-moving cases.)
 * Flag when an object is potentially moved from and the next operation is a `const` operation; there should first be an intervening non-`const` operation, ideally assignment, to first reset the object's value.
 
-### <a name="Res-new"></a>ES.60: Avoid `new` and `delete` outside resource management functions
+### <a href="#" name="Res-new"></a>ES.60: Avoid `new` and `delete` outside resource management functions
 
 ##### Reason
 
@@ -2620,7 +2620,7 @@ There can be code in the `...` part that causes the `delete` never to happen.
 
 Flag naked `new`s and naked `delete`s.
 
-### <a name="Res-del"></a>ES.61: Delete arrays using `delete[]` and non-arrays using `delete`
+### <a href="#" name="Res-del"></a>ES.61: Delete arrays using `delete[]` and non-arrays using `delete`
 
 ##### Reason
 
@@ -2646,7 +2646,7 @@ This example not only violates the [no naked `new` rule](/expr#Res-new) as in th
 * If the `new` and the `delete` are in the same scope, mistakes can be flagged.
 * If the `new` and the `delete` are in a constructor/destructor pair, mistakes can be flagged.
 
-### <a name="Res-arr2"></a>ES.62: Don't compare pointers into different arrays
+### <a href="#" name="Res-arr2"></a>ES.62: Don't compare pointers into different arrays
 
 ##### Reason
 
@@ -2671,7 +2671,7 @@ This example has many more problems.
 
 ???
 
-### <a name="Res-slice"></a>ES.63: Don't slice
+### <a href="#" name="Res-slice"></a>ES.63: Don't slice
 
 ##### Reason
 
@@ -2726,7 +2726,7 @@ For example:
 
 Warn against slicing.
 
-### <a name="Res-construct"></a>ES.64: Use the `T{e}`notation for construction
+### <a href="#" name="Res-construct"></a>ES.64: Use the `T{e}`notation for construction
 
 ##### Reason
 
@@ -2830,7 +2830,7 @@ The main problem left is to find a suitable name for `Count`.
 Flag the C-style `(T)e` and functional-style `T(e)` casts.
 
 
-### <a name="Res-deref"></a>ES.65: Don't dereference an invalid pointer
+### <a href="#" name="Res-deref"></a>ES.65: Don't dereference an invalid pointer
 
 ##### Reason
 
@@ -2995,7 +2995,7 @@ This rule is part of the [lifetime safety profile](/profile#SS-lifetime)
 
 Statements control the flow of control (except for function calls and exception throws, which are expressions).
 
-### <a name="Res-switch-if"></a>ES.70: Prefer a `switch`-statement to an `if`-statement when there is a choice
+### <a href="#" name="Res-switch-if"></a>ES.70: Prefer a `switch`-statement to an `if`-statement when there is a choice
 
 ##### Reason
 
@@ -3036,7 +3036,7 @@ rather than:
 
 Flag `if`-`then`-`else` chains that check against constants (only).
 
-### <a name="Res-for-range"></a>ES.71: Prefer a range-`for`-statement to a `for`-statement when there is a choice
+### <a href="#" name="Res-for-range"></a>ES.71: Prefer a range-`for`-statement to a `for`-statement when there is a choice
 
 ##### Reason
 
@@ -3095,7 +3095,7 @@ Better still, if the loop variable isn't modified or copied:
 
 Look at loops, if a traditional loop just looks at each element of a sequence, and there are no side effects on what it does with the elements, rewrite the loop to a ranged-`for` loop.
 
-### <a name="Res-for-while"></a>ES.72: Prefer a `for`-statement to a `while`-statement when there is an obvious loop variable
+### <a href="#" name="Res-for-while"></a>ES.72: Prefer a `for`-statement to a `while`-statement when there is an obvious loop variable
 
 ##### Reason
 
@@ -3121,7 +3121,7 @@ Readability: the complete logic of the loop is visible "up front". The scope of 
 
 ???
 
-### <a name="Res-while-for"></a>ES.73: Prefer a `while`-statement to a `for`-statement when there is no obvious loop variable
+### <a href="#" name="Res-while-for"></a>ES.73: Prefer a `while`-statement to a `for`-statement when there is no obvious loop variable
 
 ##### Reason
 
@@ -3149,12 +3149,12 @@ Better
 
 Flag actions in `for`-initializers and `for`-increments that do not relate to the `for`-condition.
 
-### <a name="Res-for-init"></a>ES.74: Prefer to declare a loop variable in the initializer part of a `for`-statement
+### <a href="#" name="Res-for-init"></a>ES.74: Prefer to declare a loop variable in the initializer part of a `for`-statement
 
 See [ES.6](/expr#Res-cond)
 
 
-### <a name="Res-do"></a>ES.75: Avoid `do`-statements
+### <a href="#" name="Res-do"></a>ES.75: Avoid `do`-statements
 
 ##### Reason
 
@@ -3178,7 +3178,7 @@ Yes, there are genuine examples where a `do`-statement is a clear statement of a
 
 Flag `do`-statements.
 
-### <a name="Res-goto"></a>ES.76: Avoid `goto`
+### <a href="#" name="Res-goto"></a>ES.76: Avoid `goto`
 
 ##### Reason
 
@@ -3223,7 +3223,7 @@ consider `gsl::finally()` as a cleaner and more reliable alternative to `goto ex
 
 * Flag `goto`. Better still flag all `goto`s that do not jump from a nested loop to the statement immediately after a nest of loops.
 
-### <a name="Res-continue"></a>ES.77: Minimize the use of `break` and `continue` in loops
+### <a href="#" name="Res-continue"></a>ES.77: Minimize the use of `break` and `continue` in loops
 
 ##### Reason
 
@@ -3309,7 +3309,7 @@ If you really need to break out a loop, a `break` is typically better than alter
 
 ???
 
-### <a name="Res-break"></a>ES.78: Don't rely on implicit fallthrough in `switch` statements
+### <a href="#" name="Res-break"></a>ES.78: Don't rely on implicit fallthrough in `switch` statements
 
 ##### Reason
 
@@ -3378,7 +3378,7 @@ In rare cases if fallthrough is deemed appropriate, be explicit and use the `[[f
 Flag all implicit fallthroughs from non-empty `case`s.
 
 
-### <a name="Res-default"></a>ES.79: Use `default` to handle common cases (only)
+### <a href="#" name="Res-default"></a>ES.79: Use `default` to handle common cases (only)
 
 ##### Reason
 
@@ -3455,7 +3455,7 @@ Flag `switch`-statements over an enumeration that don't handle all enumerators a
 This might yield too many false positives in some code bases; if so, flag only `switch`es that handle most but not all cases
 (that was the strategy of the very first C++ compiler).
 
-### <a name="Res-noname"></a>ES.84: Don't try to declare a local variable with no name
+### <a href="#" name="Res-noname"></a>ES.84: Don't try to declare a local variable with no name
 
 ##### Reason
 
@@ -3483,7 +3483,7 @@ Unnamed function arguments are fine.
 
 Flag statements that are just a temporary.
 
-### <a name="Res-empty"></a>ES.85: Make empty statements visible
+### <a href="#" name="Res-empty"></a>ES.85: Make empty statements visible
 
 ##### Reason
 
@@ -3505,7 +3505,7 @@ Readability.
 
 Flag empty statements that are not blocks and don't contain comments.
 
-### <a name="Res-loop-counter"></a>ES.86: Avoid modifying loop control variables inside the body of raw for-loops
+### <a href="#" name="Res-loop-counter"></a>ES.86: Avoid modifying loop control variables inside the body of raw for-loops
 
 ##### Reason
 
@@ -3539,7 +3539,7 @@ The loop control up front should enable correct reasoning about what is happenin
 Flag variables that are potentially updated (have a non-`const` use) in both the loop control iteration-expression and the loop body.
 
 
-### <a name="Res-if"></a>ES.87: Don't add redundant `==` or `!=` to conditions
+### <a href="#" name="Res-if"></a>ES.87: Don't add redundant `==` or `!=` to conditions
 
 ##### Reason
 
@@ -3630,9 +3630,9 @@ Easy, just check for redundant use of `!=` and `==` in conditions.
 
 
 
-## <a name="SS-numbers"></a>Arithmetic
+## <a href="#" name="SS-numbers"></a>Arithmetic
 
-### <a name="Res-mix"></a>ES.100: Don't mix signed and unsigned arithmetic
+### <a href="#" name="Res-mix"></a>ES.100: Don't mix signed and unsigned arithmetic
 
 ##### Reason
 
@@ -3663,7 +3663,7 @@ This precludes consistency. Use `gsl::index` for subscripts; [see ES.107](/expr#
 * (To avoid noise) Do not flag on a mixed signed/unsigned comparison where one of the arguments is `sizeof` or a call to container `.size()` and the other is `ptrdiff_t`.
 
 
-### <a name="Res-unsigned"></a>ES.101: Use unsigned types for bit manipulation
+### <a href="#" name="Res-unsigned"></a>ES.101: Use unsigned types for bit manipulation
 
 ##### Reason
 
@@ -3687,7 +3687,7 @@ can be surprising for many programmers.
 * Just about impossible in general because of the use of unsigned subscripts in the standard library
 * ???
 
-### <a name="Res-signed"></a>ES.102: Use signed types for arithmetic
+### <a href="#" name="Res-signed"></a>ES.102: Use signed types for arithmetic
 
 ##### Reason
 
@@ -3759,7 +3759,7 @@ This makes surprises (and bugs) inevitable.
 * (To avoid noise) Do not flag on a mixed signed/unsigned comparison where one of the arguments is `sizeof` or a call to container `.size()` and the other is `ptrdiff_t`.
 
 
-### <a name="Res-overflow"></a>ES.103: Don't overflow
+### <a href="#" name="Res-overflow"></a>ES.103: Don't overflow
 
 ##### Reason
 
@@ -3800,7 +3800,7 @@ Use unsigned types if you really want modulo arithmetic.
 
 ???
 
-### <a name="Res-underflow"></a>ES.104: Don't underflow
+### <a href="#" name="Res-underflow"></a>ES.104: Don't underflow
 
 ##### Reason
 
@@ -3825,7 +3825,7 @@ Use unsigned types if you really want modulo arithmetic.
 
 ???
 
-### <a name="Res-zero"></a>ES.105: Don't divide by integer zero
+### <a href="#" name="Res-zero"></a>ES.105: Don't divide by integer zero
 
 ##### Reason
 
@@ -3868,7 +3868,7 @@ This also applies to `%`.
 * Flag division by an integral value that could be zero
 
 
-### <a name="Res-nonnegative"></a>ES.106: Don't try to avoid negative values by using `unsigned`
+### <a href="#" name="Res-nonnegative"></a>ES.106: Don't try to avoid negative values by using `unsigned`
 
 ##### Reason
 
@@ -3940,7 +3940,7 @@ For example
 See ES.100 Enforcements.
 
 
-### <a name="Res-subscripts"></a>ES.107: Don't use `unsigned` for subscripts, prefer `gsl::index`
+### <a href="#" name="Res-subscripts"></a>ES.107: Don't use `unsigned` for subscripts, prefer `gsl::index`
 
 ##### Reason
 

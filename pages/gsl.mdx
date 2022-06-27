@@ -1,4 +1,4 @@
-# <a name="S-gsl"></a>GSL: Guidelines support library
+# <a href="#" name="S-gsl"></a>GSL: Guidelines support library
 
 The GSL is a small library of facilities designed to support this set of guidelines.
 Without these facilities, the guidelines would have to be far more restrictive on language details.
@@ -33,7 +33,7 @@ We plan for a "ISO C++ standard style" semi-formal specification of the GSL.
 
 We rely on the ISO C++ Standard Library and hope for parts of the GSL to be absorbed into the standard library.
 
-## <a name="SS-views"></a>GSL.view: Views
+## <a href="#" name="SS-views"></a>GSL.view: Views
 
 These types allow the user to distinguish between owning and non-owning pointers and between pointers to a single object and pointers to the first element of a sequence.
 
@@ -85,7 +85,7 @@ A sequence of characters that is not assumed to be zero-terminated should be a `
 
 Use `not_null<zstring>` for C-style strings that cannot be `nullptr`. ??? Do we need a name for `not_null<zstring>`? or is its ugliness a feature?
 
-## <a name="SS-ownership"></a>GSL.owner: Ownership pointers
+## <a href="#" name="SS-ownership"></a>GSL.owner: Ownership pointers
 
 * `unique_ptr<T>`     // unique ownership: `std::unique_ptr<T>`
 * `shared_ptr<T>`     // shared ownership: `std::shared_ptr<T>` (a counted pointer)
@@ -93,7 +93,7 @@ Use `not_null<zstring>` for C-style strings that cannot be `nullptr`. ??? Do we 
 * `dyn_array<T>`      // ??? needed ??? A heap-allocated array. The number of elements are determined at construction and fixed thereafter.
   The elements are mutable unless `T` is a `const` type. Basically a `span` that allocates and owns its elements.
 
-## <a name="SS-assertions"></a>GSL.assert: Assertions
+## <a href="#" name="SS-assertions"></a>GSL.assert: Assertions
 
 * `Expects`     // precondition assertion. Currently placed in function bodies. Later, should be moved to declarations.```cpp
                 // `Expects(p)` terminates the program unless `p == true`
@@ -105,7 +105,7 @@ pending standard committee decisions on contracts and assertion syntax.
 See [the contract proposal](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0380r1.pdf); using the attribute syntax,
 for example, `Expects(p)` will become `[[expects: p]]`.
 
-## <a name="SS-utilities"></a>GSL.util: Utilities
+## <a href="#" name="SS-utilities"></a>GSL.util: Utilities
 
 * `finally`        // `finally(f)` makes a `final_action{f}` with a destructor that invokes `f`
 * `narrow_cast`    // `narrow_cast<T>(x)` is `static_cast<T>(x)`
@@ -115,7 +115,7 @@ for example, `Expects(p)` will become `[[expects: p]]`.
 * `joining_thread` // a RAII style version of `std::thread` that joins.
 * `index`          // a type to use for all container and array indexing (currently an alias for `ptrdiff_t`)
 
-## <a name="SS-gsl-concepts"></a>GSL.concept: Concepts
+## <a href="#" name="SS-gsl-concepts"></a>GSL.concept: Concepts
 
 These concepts (type predicates) are borrowed from
 Andrew Sutton's Origin library,
@@ -142,7 +142,7 @@ Many of them are very similar to what became part of the ISO C++ standard in C++
 * `Relation`           // in C++20, `std::relation`
 * ...
 
-### <a name="SS-gsl-smartptrconcepts"></a>GSL.ptr: Smart pointer concepts
+### <a href="#" name="SS-gsl-smartptrconcepts"></a>GSL.ptr: Smart pointer concepts
 
 * `Pointer`  // A type with `*`, `->`, `==`, and default construction (default construction is assumed to set the singular "null" value)
 * `Unique_pointer`  // A type that matches `Pointer`, is movable, and is not copyable

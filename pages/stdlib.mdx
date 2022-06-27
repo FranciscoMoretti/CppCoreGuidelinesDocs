@@ -1,4 +1,4 @@
-# <a name="S-stdlib"></a>SL: The Standard Library
+# <a href="#" name="S-stdlib"></a>SL: The Standard Library
 
 Using only the bare language, every task is tedious (in any language).
 Using a suitable library any task can be reasonably simple.
@@ -35,7 +35,7 @@ Standard-library rule summary:
 
 * ???
 
-### <a name="Rsl-lib"></a>SL.1:  Use libraries wherever possible
+### <a href="#" name="Rsl-lib"></a>SL.1:  Use libraries wherever possible
 
 ##### Reason
 
@@ -44,7 +44,7 @@ Don't replicate the work of others.
 Benefit from other people's work when they make improvements.
 Help other people when you make improvements.
 
-### <a name="Rsl-sl"></a>SL.2: Prefer the standard library to other libraries
+### <a href="#" name="Rsl-sl"></a>SL.2: Prefer the standard library to other libraries
 
 ##### Reason
 
@@ -52,7 +52,7 @@ More people know the standard library.
 It is more likely to be stable, well-maintained, and widely available than your own code or most other libraries.
 
 
-### <a name="sl-std"></a>SL.3: Do not add non-standard entities to namespace `std`
+### <a href="#" name="sl-std"></a>SL.3: Do not add non-standard entities to namespace `std`
 
 ##### Reason
 
@@ -68,7 +68,7 @@ Additions to `std` might clash with future versions of the standard.
 
 Possible, but messy and likely to cause problems with platforms.
 
-### <a name="sl-safe"></a>SL.4: Use the standard library in a type-safe manner
+### <a href="#" name="sl-safe"></a>SL.4: Use the standard library in a type-safe manner
 
 ##### Reason
 
@@ -85,7 +85,7 @@ Summary of more specific rules:
 
 
 
-## <a name="SS-con"></a>SL.con: Containers
+## <a href="#" name="SS-con"></a>SL.con: Containers
 
 ???
 
@@ -100,7 +100,7 @@ Container rule summary:
 * [SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable](/stdlib#Rsl-copy)
 
 
-### <a name="Rsl-arrays"></a>SL.con.1: Prefer using STL `array` or `vector` instead of a C array
+### <a href="#" name="Rsl-arrays"></a>SL.con.1: Prefer using STL `array` or `vector` instead of a C array
 
 ##### Reason
 
@@ -141,7 +141,7 @@ People working with code for which that difference matters are quite capable of 
 
 * Flag declaration of a C array inside a function or class that also declares an STL container (to avoid excessive noisy warnings on legacy non-STL code). To fix: At least change the C array to a `std::array`.
 
-### <a name="Rsl-vector"></a>SL.con.2: Prefer using STL `vector` by default unless you have a reason to use a different container
+### <a href="#" name="Rsl-vector"></a>SL.con.2: Prefer using STL `vector` by default unless you have a reason to use a different container
 
 ##### Reason
 
@@ -183,7 +183,7 @@ To initialize a vector with a list of elements, use `{}`-initialization.
 
 * Flag a `vector` whose size never changes after construction (such as because it's `const` or because no non-`const` functions are called on it). To fix: Use an `array` instead.
 
-### <a name="Rsl-bounds"></a>SL.con.3: Avoid bounds errors
+### <a href="#" name="Rsl-bounds"></a>SL.con.3: Avoid bounds errors
 
 ##### Reason
 
@@ -263,7 +263,7 @@ This rule is part of the [bounds profile](/profile#SS-bounds).
 
 
 
-### <a name="Rsl-copy"></a>SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable
+### <a href="#" name="Rsl-copy"></a>SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable
 
 ##### Reason
 
@@ -316,7 +316,7 @@ Instead, define proper default initialization, copy, and comparison functions
 
 
 
-## <a name="SS-string"></a>SL.str: String
+## <a href="#" name="SS-string"></a>SL.str: String
 
 Text manipulation is a huge topic.
 `std::string` doesn't cover all of it.
@@ -356,7 +356,7 @@ String summary:
 
 
 
-### <a name="Rstr-string"></a>SL.str.1: Use `std::string` to own character sequences
+### <a href="#" name="Rstr-string"></a>SL.str.1: Use `std::string` to own character sequences
 
 ##### Reason
 
@@ -419,7 +419,7 @@ Do not assume that `string` is slower than lower-level techniques without measur
 
 ???
 
-### <a name="Rstr-view"></a>SL.str.2: Use `std::string_view` or `gsl::span<char>` to refer to character sequences
+### <a href="#" name="Rstr-view"></a>SL.str.2: Use `std::string_view` or `gsl::span<char>` to refer to character sequences
 
 ##### Reason
 
@@ -448,7 +448,7 @@ those sequences are allocated and stored.
 
 ???
 
-### <a name="Rstr-zstring"></a>SL.str.3: Use `zstring` or `czstring` to refer to a C-style, zero-terminated, sequence of characters
+### <a href="#" name="Rstr-zstring"></a>SL.str.3: Use `zstring` or `czstring` to refer to a C-style, zero-terminated, sequence of characters
 
 ##### Reason
 
@@ -490,7 +490,7 @@ This is one of the major sources of bugs in C and C++ programs, so it is worthwh
 * Flag uses of `delete` on a `char*`
 * Flag uses of `free()` on a `char*`
 
-### <a name="Rstr-char*"></a>SL.str.4: Use `char*` to refer to a single character
+### <a href="#" name="Rstr-char*"></a>SL.str.4: Use `char*` to refer to a single character
 
 ##### Reason
 
@@ -530,7 +530,7 @@ See [`zstring`](/stdlib#Rstr-zstring), [`string`](/stdlib#Rstr-string), and [`st
 
 * Flag uses of `[]` on a `char*`
 
-### <a name="Rstr-byte"></a>SL.str.5: Use `std::byte` to refer to byte values that do not necessarily represent characters
+### <a href="#" name="Rstr-byte"></a>SL.str.5: Use `std::byte` to refer to byte values that do not necessarily represent characters
 
 ##### Reason
 
@@ -551,7 +551,7 @@ C++17
 ???
 
 
-### <a name="Rstr-locale"></a>SL.str.10: Use `std::string` when you need to perform locale-sensitive string operations
+### <a href="#" name="Rstr-locale"></a>SL.str.10: Use `std::string` when you need to perform locale-sensitive string operations
 
 ##### Reason
 
@@ -571,7 +571,7 @@ C++17
 
 ???
 
-### <a name="Rstr-span"></a>SL.str.11: Use `gsl::span<char>` rather than `std::string_view` when you need to mutate a string
+### <a href="#" name="Rstr-span"></a>SL.str.11: Use `gsl::span<char>` rather than `std::string_view` when you need to mutate a string
 
 ##### Reason
 
@@ -589,7 +589,7 @@ C++17
 
 The compiler will flag attempts to write to a `string_view`.
 
-### <a name="Rstr-s"></a>SL.str.12: Use the `s` suffix for string literals meant to be standard-library `string`s
+### <a href="#" name="Rstr-s"></a>SL.str.12: Use the `s` suffix for string literals meant to be standard-library `string`s
 
 ##### Reason
 
@@ -610,7 +610,7 @@ Direct expression of an idea minimizes mistakes.
 ???
 
 
-## <a name="SS-io"></a>SL.io: Iostream
+## <a href="#" name="SS-io"></a>SL.io: Iostream
 
 `iostream`s is a type safe, extensible, formatted and unformatted I/O library for streaming I/O.
 It supports multiple (and user extensible) buffering strategies and multiple locales.
@@ -631,7 +631,7 @@ Iostream rule summary:
 
 * [???](#???)
 
-### <a name="Rio-low"></a>SL.io.1: Use character-level input only when you have to
+### <a href="#" name="Rio-low"></a>SL.io.1: Use character-level input only when you have to
 
 ##### Reason
 
@@ -664,7 +664,7 @@ and the `reserve(128)` is probably not worthwhile.
 ???
 
 
-### <a name="Rio-validate"></a>SL.io.2: When reading, always consider ill-formed input
+### <a href="#" name="Rio-validate"></a>SL.io.2: When reading, always consider ill-formed input
 
 ##### Reason
 
@@ -680,7 +680,7 @@ If input isn't validated, every function must be written to cope with bad data (
 
 ???
 
-### <a name="Rio-streams"></a>SL.io.3: Prefer `iostream`s for I/O
+### <a href="#" name="Rio-streams"></a>SL.io.3: Prefer `iostream`s for I/O
 
 ##### Reason
 
@@ -723,7 +723,7 @@ If present in your C library, `gets_s()`, `scanf_s()`, and `printf_s()` might be
 
 Optionally flag `<cstdio>` and `<stdio.h>`.
 
-### <a name="Rio-sync"></a>SL.io.10: Unless you use `printf`-family functions call `ios_base::sync_with_stdio(false)`
+### <a href="#" name="Rio-sync"></a>SL.io.10: Unless you use `printf`-family functions call `ios_base::sync_with_stdio(false)`
 
 ##### Reason
 
@@ -743,7 +743,7 @@ Synchronizing `iostreams` with `printf-style` I/O can be costly.
 
 ???
 
-### <a name="Rio-endl"></a>SL.io.50: Avoid `endl`
+### <a href="#" name="Rio-endl"></a>SL.io.50: Avoid `endl`
 
 ##### Reason
 
@@ -767,18 +767,18 @@ For writing to a file, there is rarely a need to `flush`.
 Apart from the (occasionally important) issue of performance,
 the choice between `'\n'` and `endl` is almost completely aesthetic.
 
-## <a name="SS-regex"></a>SL.regex: Regex
+## <a href="#" name="SS-regex"></a>SL.regex: Regex
 
 `<regex>` is the standard C++ regular expression library.
 It supports a variety of regular expression pattern conventions.
 
-## <a name="SS-chrono"></a>SL.chrono: Time
+## <a href="#" name="SS-chrono"></a>SL.chrono: Time
 
 `<chrono>` (defined in namespace `std::chrono`) provides the notions of `time_point` and `duration` together with functions for
 outputting time in various units.
 It provides clocks for registering `time_points`.
 
-## <a name="SS-clib"></a>SL.C: The C Standard Library
+## <a href="#" name="SS-clib"></a>SL.C: The C Standard Library
 
 ???
 
@@ -789,7 +789,7 @@ C Standard Library rule summary:
 * [???](#???)
 * [???](#???)
 
-### <a name="Rclib-jmp"></a>SL.C.1: Don't use setjmp/longjmp
+### <a href="#" name="Rclib-jmp"></a>SL.C.1: Don't use setjmp/longjmp
 
 ##### Reason
 

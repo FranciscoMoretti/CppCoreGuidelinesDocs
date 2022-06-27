@@ -1,4 +1,4 @@
-# <a name="S-naming"></a>NL: Naming and layout suggestions
+# <a href="#" name="S-naming"></a>NL: Naming and layout suggestions
 
 Consistent naming and layout are helpful.
 If for no other reason because it minimizes "my style is better than your style" arguments.
@@ -61,7 +61,7 @@ More specific and detailed rules are easier to enforce.
 These rules bear a strong resemblance to the recommendations in the [PPP Style Guide](http://www.stroustrup.com/Programming/PPP-style.pdf)
 written in support of Stroustrup's [Programming: Principles and Practice using C++](http://www.stroustrup.com/programming.html).
 
-### <a name="Rl-comments"></a>NL.1: Don't say in comments what can be clearly stated in code
+### <a href="#" name="Rl-comments"></a>NL.1: Don't say in comments what can be clearly stated in code
 
 ##### Reason
 
@@ -78,7 +78,7 @@ Comments are not updated as consistently as code.
 
 Build an AI program that interprets colloquial English text and see if what is said could be better expressed in C++.
 
-### <a name="Rl-comments-intent"></a>NL.2: State intent in comments
+### <a href="#" name="Rl-comments-intent"></a>NL.2: State intent in comments
 
 ##### Reason
 
@@ -98,7 +98,7 @@ Code says what is done, not what is supposed to be done. Often intent can be sta
 
 If the comment and the code disagree, both are likely to be wrong.
 
-### <a name="Rl-comments-crisp"></a>NL.3: Keep comments crisp
+### <a href="#" name="Rl-comments-crisp"></a>NL.3: Keep comments crisp
 
 ##### Reason
 
@@ -115,7 +115,7 @@ Aim for professionalism, not "cool."
 
 not possible.
 
-### <a name="Rl-indent"></a>NL.4: Maintain a consistent indentation style
+### <a href="#" name="Rl-indent"></a>NL.4: Maintain a consistent indentation style
 
 ##### Reason
 
@@ -144,7 +144,7 @@ Always indenting the statement after `if (...)`, `for (...)`, and `while (...)` 
 
 Use a tool.
 
-### <a name="Rl-name-type"></a>NL.5: Avoid encoding type information in names
+### <a href="#" name="Rl-name-type"></a>NL.5: Avoid encoding type information in names
 
 ##### Rationale
 
@@ -228,7 +228,7 @@ For example, by capitalizing type names, but not the names of functions and vari
 
 This is not harmful and does not fall under this guideline because it does not encode type information.
 
-### <a name="Rl-name-length"></a>NL.7: Make the length of a name roughly proportional to the length of its scope
+### <a href="#" name="Rl-name-length"></a>NL.7: Make the length of a name roughly proportional to the length of its scope
 
 **Rationale**: The larger the scope the greater the chance of confusion and of an unintended name clash.
 
@@ -255,7 +255,7 @@ The use of `p` for pointer and `x` for a floating-point variable is conventional
 
 ???
 
-### <a name="Rl-name"></a>NL.8: Use a consistent naming style
+### <a href="#" name="Rl-name"></a>NL.8: Use a consistent naming style
 
 **Rationale**: Consistence in naming and naming style increases readability.
 
@@ -306,7 +306,7 @@ Try to be consistent in your use of acronyms and lengths of identifiers:
 
 Would be possible except for the use of libraries with varying conventions.
 
-### <a name="Rl-all-caps"></a>NL.9: Use `ALL_CAPS` for macro names only
+### <a href="#" name="Rl-all-caps"></a>NL.9: Use `ALL_CAPS` for macro names only
 
 ##### Reason
 
@@ -333,7 +333,7 @@ This rule applies to non-macro symbolic constants:
 * Flag macros with lower-case letters
 * Flag `ALL_CAPS` non-macro names
 
-### <a name="Rl-camel"></a>NL.10: Prefer `underscore_style` names
+### <a href="#" name="Rl-camel"></a>NL.10: Prefer `underscore_style` names
 
 ##### Reason
 
@@ -363,7 +363,7 @@ ISO Standard, but with upper case used for your own types and concepts:
 
 Impossible.
 
-### <a name="Rl-literals"></a>NL.11: Make literals readable
+### <a href="#" name="Rl-literals"></a>NL.11: Make literals readable
 
 ##### Reason
 
@@ -398,7 +398,7 @@ It is easy to make a typo in a long string of integers.
 
 Flag long digit sequences. The trouble is to define "long"; maybe 7.
 
-### <a name="Rl-space"></a>NL.15: Use spaces sparingly
+### <a href="#" name="Rl-space"></a>NL.15: Use spaces sparingly
 
 ##### Reason
 
@@ -438,7 +438,7 @@ This rule was added after many requests for guidance.
 
 We value well-placed whitespace as a significant help for readability. Just don't overdo it.
 
-### <a name="Rl-order"></a>NL.16: Use a conventional class member declaration order
+### <a href="#" name="Rl-order"></a>NL.16: Use a conventional class member declaration order
 
 ##### Reason
 
@@ -504,7 +504,7 @@ However, using macros obscures what is being expressed anyway.
 
 Flag departures from the suggested order. There will be a lot of old code that doesn't follow this rule.
 
-### <a name="Rl-knr"></a>NL.17: Use K&R-derived layout
+### <a href="#" name="Rl-knr"></a>NL.17: Use K&R-derived layout
 
 ##### Reason
 
@@ -582,7 +582,7 @@ Do not capitalize function names.
 
 If you want enforcement, use an IDE to reformat.
 
-### <a name="Rl-ptr"></a>NL.18: Use C++-style declarator layout
+### <a href="#" name="Rl-ptr"></a>NL.18: Use C++-style declarator layout
 
 ##### Reason
 
@@ -607,7 +607,7 @@ This rule was added after many requests for guidance.
 Impossible in the face of history.
 
 
-### <a name="Rl-misread"></a>NL.19: Avoid names that are easily misread
+### <a href="#" name="Rl-misread"></a>NL.19: Avoid names that are easily misread
 
 ##### Reason
 
@@ -628,7 +628,7 @@ We easily confuse similarly spelled and slightly misspelled words.
 
 ???
 
-### <a name="Rl-stmt"></a>NL.20: Don't place two statements on the same line
+### <a href="#" name="Rl-stmt"></a>NL.20: Don't place two statements on the same line
 
 ##### Reason
 
@@ -645,7 +645,7 @@ It is really easy to overlook a statement when there is more on a line.
 
 Easy.
 
-### <a name="Rl-dcl"></a>NL.21: Declare one name (only) per declaration
+### <a href="#" name="Rl-dcl"></a>NL.21: Declare one name (only) per declaration
 
 ##### Reason
 
@@ -658,7 +658,7 @@ For details, see [ES.10](/expr#Res-name-one).
 
 
 
-### <a name="Rl-void"></a>NL.25: Don't use `void` as an argument type
+### <a href="#" name="Rl-void"></a>NL.25: Don't use `void` as an argument type
 
 ##### Reason
 
@@ -683,7 +683,7 @@ You can make an argument for that abomination in C when function prototypes were
 
 would have caused major problems, but not in the 21st century and in C++.
 
-### <a name="Rl-const"></a>NL.26: Use conventional `const` notation
+### <a href="#" name="Rl-const"></a>NL.26: Use conventional `const` notation
 
 ##### Reason
 

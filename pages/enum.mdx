@@ -1,4 +1,4 @@
-# <a name="S-enum"></a>Enum: Enumerations
+# <a href="#" name="S-enum"></a>Enum: Enumerations
 
 Enumerations are used to define sets of integer values and for defining types for such sets of values.
 There are two kind of enumerations, "plain" `enum`s and `class enum`s.
@@ -22,7 +22,7 @@ Enumeration rule summary:
 * [Enum.8: Specify enumerator values only when necessary](/enum#Renum-value)
 
 
-### <a name="Renum-macro"></a>Enum.1: Prefer enumerations over macros
+### <a href="#" name="Renum-macro"></a>Enum.1: Prefer enumerations over macros
 
 ##### Reason
 
@@ -65,7 +65,7 @@ We used an `enum class` to avoid name clashes.
 Flag macros that define integer values.
 
 
-### <a name="Renum-set"></a>Enum.2: Use enumerations to represent sets of related named constants
+### <a href="#" name="Renum-set"></a>Enum.2: Use enumerations to represent sets of related named constants
 
 ##### Reason
 
@@ -103,7 +103,7 @@ Such off-by-one `switch`-statements are often the results of an added enumerator
 * Flag `switch`-statements where the `case`s cover a few enumerators of an enumeration, but there is no `default`.
 
 
-### <a name="Renum-class"></a>Enum.3: Prefer class enums over "plain" enums
+### <a href="#" name="Renum-class"></a>Enum.3: Prefer class enums over "plain" enums
 
 ##### Reason
 
@@ -144,7 +144,7 @@ Instead use an `enum class`:
 
 (Simple) Warn on any non-class `enum` definition.
 
-### <a name="Renum-oper"></a>Enum.4: Define operations on enumerations for safe and simple use
+### <a href="#" name="Renum-oper"></a>Enum.4: Define operations on enumerations for safe and simple use
 
 ##### Reason
 
@@ -181,7 +181,7 @@ is an infinite recursion, and writing it without a cast, using a `switch` on all
 Flag repeated expressions cast back into an enumeration.
 
 
-### <a name="Renum-caps"></a>Enum.5: Don't use `ALL_CAPS` for enumerators
+### <a href="#" name="Renum-caps"></a>Enum.5: Don't use `ALL_CAPS` for enumerators
 
 ##### Reason
 
@@ -206,7 +206,7 @@ Avoid clashes with macros.
 
 Flag ALL_CAPS enumerators.
 
-### <a name="Renum-unnamed"></a>Enum.6: Avoid unnamed enumerations
+### <a href="#" name="Renum-unnamed"></a>Enum.6: Avoid unnamed enumerations
 
 ##### Reason
 
@@ -233,7 +233,7 @@ Use `constexpr` values instead. For example:
 Flag unnamed enumerations.
 
 
-### <a name="Renum-underlying"></a>Enum.7: Specify the underlying type of an enumeration only when necessary
+### <a href="#" name="Renum-underlying"></a>Enum.7: Specify the underlying type of an enumeration only when necessary
 
 ##### Reason
 
@@ -274,7 +274,7 @@ Specifying the underlying type is necessary in forward declarations of enumerati
 ????
 
 
-### <a name="Renum-value"></a>Enum.8: Specify enumerator values only when necessary
+### <a href="#" name="Renum-value"></a>Enum.8: Specify enumerator values only when necessary
 
 ##### Reason
 

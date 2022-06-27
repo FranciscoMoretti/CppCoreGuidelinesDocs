@@ -1,4 +1,4 @@
-# <a name="S-not"></a>NR: Non-Rules and myths
+# <a href="#" name="S-not"></a>NR: Non-Rules and myths
 
 This section contains rules and guidelines that are popular somewhere, but that we deliberately don't recommend.
 We know perfectly well that there have been times and places where these rules made sense, and we have used them ourselves at times.
@@ -30,7 +30,7 @@ Non-rule summary:
 
 * ???
 
-### <a name="Rnr-top"></a>NR.1: Don't insist that all declarations should be at the top of a function
+### <a href="#" name="Rnr-top"></a>NR.1: Don't insist that all declarations should be at the top of a function
 
 ##### Reason
 
@@ -73,7 +73,7 @@ Unfortunately, compilers cannot catch all such errors and unfortunately, the bug
 * [ES.21: Don't introduce a variable (or constant) before you need to use it](/expr#Res-introduce)
 
 
-### <a name="Rnr-single-return"></a>NR.2: Don't insist to have only a single `return`-statement in a function
+### <a href="#" name="Rnr-single-return"></a>NR.2: Don't insist to have only a single `return`-statement in a function
 
 ##### Reason
 
@@ -148,7 +148,7 @@ Also, this style is a temptation to use the [goto exit](/not#Rnr-goto-exit) non-
 * Keep functions short and simple
 * Feel free to use multiple `return` statements (and to throw exceptions).
 
-### <a name="Rnr-no-exceptions"></a>NR.3: Don't avoid exceptions
+### <a href="#" name="Rnr-no-exceptions"></a>NR.3: Don't avoid exceptions
 
 ##### Reason
 
@@ -224,7 +224,7 @@ Remember
 
 * Contracts/assertions: Use GSL's `Expects` and `Ensures` (until we get language support for contracts)
 
-### <a name="Rnr-lots-of-files"></a>NR.4: Don't insist on placing each class declaration in its own source file
+### <a href="#" name="Rnr-lots-of-files"></a>NR.4: Don't insist on placing each class declaration in its own source file
 
 ##### Reason
 
@@ -240,7 +240,7 @@ Individual classes are rarely a good logical unit of maintenance and distributio
 
 * Use namespaces containing logically cohesive sets of classes and functions.
 
-### <a name="Rnr-two-phase-init"></a>NR.5: Don't use two-phase initialization
+### <a href="#" name="Rnr-two-phase-init"></a>NR.5: Don't use two-phase initialization
 
 ##### Reason
 
@@ -362,7 +362,7 @@ and errors (when we didn't deal correctly with semi-constructed objects consiste
 * Always establish a class invariant in a constructor.
 * Don't define an object before it is needed.
 
-### <a name="Rnr-goto-exit"></a>NR.6: Don't place all cleanup actions at the end of a function and `goto exit`
+### <a href="#" name="Rnr-goto-exit"></a>NR.6: Don't place all cleanup actions at the end of a function and `goto exit`
 
 ##### Reason
 
@@ -393,7 +393,7 @@ and spot the bug.
 * for non-RAII resources, use [`finally`](/errors#Re-finally).
 
 
-### <a name="Rnr-protected-data"></a>NR.7: Don't make all data members `protected`
+### <a href="#" name="Rnr-protected-data"></a>NR.7: Don't make all data members `protected`
 
 ##### Reason
 

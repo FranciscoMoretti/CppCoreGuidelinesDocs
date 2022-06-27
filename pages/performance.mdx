@@ -1,4 +1,4 @@
-# <a name="S-performance"></a>Per: Performance
+# <a href="#" name="S-performance"></a>Per: Performance
 
 ??? should this section be in the main guide???
 
@@ -46,7 +46,7 @@ Performance rule summary:
 * [Per.30: Avoid context switches on the critical path](/performance#Rper-context)
 
 
-### <a name="Rper-reason"></a>Per.1: Don't optimize without reason
+### <a href="#" name="Rper-reason"></a>Per.1: Don't optimize without reason
 
 ##### Reason
 
@@ -58,7 +58,7 @@ Some people optimize out of habit or because it's fun.
 
 ???
 
-### <a name="Rper-Knuth"></a>Per.2: Don't optimize prematurely
+### <a href="#" name="Rper-Knuth"></a>Per.2: Don't optimize prematurely
 
 ##### Reason
 
@@ -66,7 +66,7 @@ Elaborately optimized code is usually larger and harder to change than unoptimiz
 
 ???
 
-### <a name="Rper-critical"></a>Per.3: Don't optimize something that's not performance critical
+### <a href="#" name="Rper-critical"></a>Per.3: Don't optimize something that's not performance critical
 
 ##### Reason
 
@@ -82,7 +82,7 @@ only as impactful as a 5% improvement on B. (If you don't even know how much
 time is spent on A or B, see <a href="#Rper-reason">Per.1</a> and <a
 href="#Rper-Knuth">Per.2</a>.)
 
-### <a name="Rper-simple"></a>Per.4: Don't assume that complicated code is necessarily faster than simple code
+### <a href="#" name="Rper-simple"></a>Per.4: Don't assume that complicated code is necessarily faster than simple code
 
 ##### Reason
 
@@ -120,7 +120,7 @@ Simple code can be very fast. Optimizers sometimes do marvels with simple code
 
 ???
 
-### <a name="Rper-low"></a>Per.5: Don't assume that low-level code is necessarily faster than high-level code
+### <a href="#" name="Rper-low"></a>Per.5: Don't assume that low-level code is necessarily faster than high-level code
 
 ##### Reason
 
@@ -132,7 +132,7 @@ Low-level code sometimes inhibits optimizations. Optimizers sometimes do marvels
 
 ???
 
-### <a name="Rper-measure"></a>Per.6: Don't make claims about performance without measurements
+### <a href="#" name="Rper-measure"></a>Per.6: Don't make claims about performance without measurements
 
 ##### Reason
 
@@ -152,7 +152,7 @@ Often, you will be surprised.
 
 ???
 
-### <a name="Rper-efficiency"></a>Per.7: Design to enable optimization
+### <a href="#" name="Rper-efficiency"></a>Per.7: Design to enable optimization
 
 ##### Reason
 
@@ -338,7 +338,7 @@ It complements it encouraging developers enable later - appropriate and non-prem
 Tricky.
 Maybe looking for `void*` function arguments will find examples of interfaces that hinder later optimization.
 
-### <a name="Rper-type"></a>Per.10: Rely on the static type system
+### <a href="#" name="Rper-type"></a>Per.10: Rely on the static type system
 
 ##### Reason
 
@@ -346,7 +346,7 @@ Type violations, weak types (e.g. `void*`s), and low-level code (e.g., manipulat
 
 ???
 
-### <a name="Rper-Comp"></a>Per.11: Move computation from run time to compile time
+### <a href="#" name="Rper-Comp"></a>Per.11: Move computation from run time to compile time
 
 ##### Reason
 
@@ -432,23 +432,23 @@ This is admittedly rare, but by factoring out a general computation into separat
 * Look for functions called with all constant-expression arguments.
 * Look for macros that could be constexpr.
 
-### <a name="Rper-alias"></a>Per.12: Eliminate redundant aliases
+### <a href="#" name="Rper-alias"></a>Per.12: Eliminate redundant aliases
 
 ???
 
-### <a name="Rper-indirect"></a>Per.13: Eliminate redundant indirections
+### <a href="#" name="Rper-indirect"></a>Per.13: Eliminate redundant indirections
 
 ???
 
-### <a name="Rper-alloc"></a>Per.14: Minimize the number of allocations and deallocations
+### <a href="#" name="Rper-alloc"></a>Per.14: Minimize the number of allocations and deallocations
 
 ???
 
-### <a name="Rper-alloc0"></a>Per.15: Do not allocate on a critical branch
+### <a href="#" name="Rper-alloc0"></a>Per.15: Do not allocate on a critical branch
 
 ???
 
-### <a name="Rper-compact"></a>Per.16: Use compact data structures
+### <a href="#" name="Rper-compact"></a>Per.16: Use compact data structures
 
 ##### Reason
 
@@ -456,11 +456,11 @@ Performance is typically dominated by memory access times.
 
 ???
 
-### <a name="Rper-struct"></a>Per.17: Declare the most used member of a time-critical struct first
+### <a href="#" name="Rper-struct"></a>Per.17: Declare the most used member of a time-critical struct first
 
 ???
 
-### <a name="Rper-space"></a>Per.18: Space is time
+### <a href="#" name="Rper-space"></a>Per.18: Space is time
 
 ##### Reason
 
@@ -468,7 +468,7 @@ Performance is typically dominated by memory access times.
 
 ???
 
-### <a name="Rper-access"></a>Per.19: Access memory predictably
+### <a href="#" name="Rper-access"></a>Per.19: Access memory predictably
 
 ##### Reason
 
@@ -491,7 +491,7 @@ Performance is very sensitive to cache performance and cache algorithms favor si
             sum += matrix[r][c];
 ```
 
-### <a name="Rper-context"></a>Per.30: Avoid context switches on the critical path
+### <a href="#" name="Rper-context"></a>Per.30: Avoid context switches on the critical path
 
 ???
 
