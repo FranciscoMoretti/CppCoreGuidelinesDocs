@@ -8,31 +8,22 @@ Its description in the standard is now larger than that of the language features
 So, it is likely that this library section of the guidelines will eventually grow in size to equal or exceed all the rest.
 
 
+
 C++ Standard Library component summary:
 
-* [SL.con: Containers](/stdlib#SS-con)
-
-* [SL.str: String](/stdlib#SS-string)
-
-* [SL.io: Iostream](/stdlib#SS-io)
-
-* [SL.regex: Regex](/stdlib#SS-regex)
-
-* [SL.chrono: Time](/stdlib#SS-chrono)
-
-* [SL.C: The C Standard Library](/stdlib#SS-clib)
-
+* [(SL.con: Containers)](/stdlib#SS-con)
+* [(SL.str: String)](/stdlib#SS-string)
+* [(SL.io: Iostream)](/stdlib#SS-io)
+* [(SL.regex: Regex)](/stdlib#SS-regex)
+* [(SL.chrono: Time)](/stdlib#SS-chrono)
+* [(SL.C: The C Standard Library)](/stdlib#SS-clib)
 
 Standard-library rule summary:
 
-* [SL.1: Use libraries wherever possible](/stdlib#Rsl-lib)
-
-* [SL.2: Prefer the standard library to other libraries](/stdlib#Rsl-sl)
-
-* [SL.3: Do not add non-standard entities to namespace `std`](/stdlib#sl-std)
-
-* [SL.4: Use the standard library in a type-safe manner](/stdlib#sl-safe)
-
+* [(SL.1: Use libraries wherever possible)](/stdlib#Rsl-lib)
+* [(SL.2: Prefer the standard library to other libraries)](/stdlib#Rsl-sl)
+* [(SL.3: Do not add non-standard entities to namespace `std`)](/stdlib#sl-std)
+* [(SL.4: Use the standard library in a type-safe manner)](/stdlib#sl-safe)
 * ???
 
 ### <a href="#" name="Rsl-lib"></a>SL.1:  Use libraries wherever possible
@@ -51,7 +42,6 @@ Help other people when you make improvements.
 More people know the standard library.
 It is more likely to be stable, well-maintained, and widely available than your own code or most other libraries.
 
-
 ### <a href="#" name="sl-std"></a>SL.3: Do not add non-standard entities to namespace `std`
 
 ##### Reason
@@ -60,8 +50,9 @@ Adding to `std` might change the meaning of otherwise standards conforming code.
 Additions to `std` might clash with future versions of the standard.
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Enforcement
@@ -81,9 +72,7 @@ We need it as an umbrella for the more specific rules.
 
 Summary of more specific rules:
 
-* [SL.4: Use the standard library in a type-safe manner](/stdlib#sl-safe)
-
-
+* [(SL.4: Use the standard library in a type-safe manner)](/stdlib#sl-safe)
 
 ## <a href="#" name="SS-con"></a>SL.con: Containers
 
@@ -91,14 +80,10 @@ Summary of more specific rules:
 
 Container rule summary:
 
-* [SL.con.1: Prefer using STL `array` or `vector` instead of a C array](/stdlib#Rsl-arrays)
-
-* [SL.con.2: Prefer using STL `vector` by default unless you have a reason to use a different container](/stdlib#Rsl-vector)
-
-* [SL.con.3: Avoid bounds errors](/stdlib#Rsl-bounds)
-
-* [SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable](/stdlib#Rsl-copy)
-
+* [(SL.con.1: Prefer using STL `array` or `vector` instead of a C array)](/stdlib#Rsl-arrays)
+* [(SL.con.2: Prefer using STL `vector` by default unless you have a reason to use a different container)](/stdlib#Rsl-vector)
+* [(SL.con.3: Avoid bounds errors)](/stdlib#Rsl-bounds)
+* [(SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable)](/stdlib#Rsl-copy)
 
 ### <a href="#" name="Rsl-arrays"></a>SL.con.1: Prefer using STL `array` or `vector` instead of a C array
 
@@ -110,20 +95,20 @@ Also, like a built-in array, a stack-allocated `std::array` keeps its elements o
 For a variable-length array, use `std::vector`, which additionally can change its size and handles memory allocation.
 
 ##### Example
+
 ```cpp
-    int v[SIZE];                        // BAD
-```
-```cpp
-    std::array<int, SIZE> w;            // ok
+int v[SIZE];                        // BAD
+
+std::array<int, SIZE> w;            // ok
 ```
 
 ##### Example
+
 ```cpp
-    int* v = new int[initial_size];     // BAD, owning raw pointer
-    delete[] v;                         // BAD, manual delete
-```
-```cpp
-    std::vector<int> w(initial_size);   // ok
+int* v = new int[initial_size];     // BAD, owning raw pointer
+delete[] v;                         // BAD, manual delete
+
+std::vector<int> w(initial_size);   // ok
 ```
 
 ##### Note
@@ -171,13 +156,13 @@ If you have a good reason to use another container, use that instead. For exampl
 
 To initialize a vector with a number of elements, use `()`-initialization.
 To initialize a vector with a list of elements, use `{}`-initialization.
+
 ```cpp
-    vector<int> v1(20);  // v1 has 20 elements with the value 0 (vector<int>{})
-    vector<int> v2 {20}; // v2 has 1 element with the value 20
+vector<int> v1(20);  // v1 has 20 elements with the value 0 (vector<int>{})
+vector<int> v2 {20}; // v2 has 1 element with the value 20
 ```
 
-[Prefer the {}-initializer syntax](/expr#Res-list).
-
+[(Prefer the {}-initializer syntax)](/expr#Res-list).
 
 ##### Enforcement
 
@@ -210,58 +195,57 @@ For example
 Such loops can be much faster than individually checked element accesses.
 
 ##### Example, bad
+
 ```cpp
-    void f()
-    {
-        array<int, 10> a, b;
-        memset(a.data(), 0, 10);         // BAD, and contains a length error (length = 10 * sizeof(int))
-        memcmp(a.data(), b.data(), 10);  // BAD, and contains a length error (length = 10 * sizeof(int))
-    }
+void f()
+{
+    array<int, 10> a, b;
+    memset(a.data(), 0, 10);         // BAD, and contains a length error (length = 10 * sizeof(int))
+    memcmp(a.data(), b.data(), 10);  // BAD, and contains a length error (length = 10 * sizeof(int))
+}
 ```
 
 Also, `std::array<>::fill()` or `std::fill()` or even an empty initializer are better candidates than `memset()`.
 
 ##### Example, good
+
 ```cpp
-    void f()
-    {
-        array<int, 10> a, b, c{};       // c is initialized to zero
-        a.fill(0);
-        fill(b.begin(), b.end(), 0);    // std::fill()
-        fill(b, 0);                     // std::ranges::fill()
-```
-```cpp
-        if ( a == b ) {
-          // ...
-        }
+void f()
+{
+    array<int, 10> a, b, c{};       // c is initialized to zero
+    a.fill(0);
+    fill(b.begin(), b.end(), 0);    // std::fill()
+    fill(b, 0);                     // std::ranges::fill()
+
+    if ( a == b ) {
+      // ...
     }
+}
 ```
 
 ##### Example
 
 If code is using an unmodified standard library, then there are still workarounds that enable use of `std::array` and `std::vector` in a bounds-safe manner. Code can call the `.at()` member function on each class, which will result in an `std::out_of_range` exception being thrown. Alternatively, code can call the `at()` free function, which will result in fail-fast (or a customized action) on a bounds violation.
+
 ```cpp
-    void f(std::vector<int>& v, std::array<int, 12> a, int i)
-    {
-        v[0] = a[0];        // BAD
-        v.at(0) = a[0];     // OK (alternative 1)
-        at(v, 0) = a[0];    // OK (alternative 2)
-```
-```cpp
-        v.at(0) = a[i];     // BAD
-        v.at(0) = a.at(i);  // OK (alternative 1)
-        v.at(0) = at(a, i); // OK (alternative 2)
-    }
+void f(std::vector<int>& v, std::array<int, 12> a, int i)
+{
+    v[0] = a[0];        // BAD
+    v.at(0) = a[0];     // OK (alternative 1)
+    at(v, 0) = a[0];    // OK (alternative 2)
+
+    v.at(0) = a[i];     // BAD
+    v.at(0) = a.at(i);  // OK (alternative 1)
+    v.at(0) = at(a, i); // OK (alternative 2)
+}
 ```
 
 ##### Enforcement
 
 * Issue a diagnostic for any call to a standard-library function that is not bounds-checked.
-??? insert link to a list of banned functions
+  ??? insert link to a list of banned functions
 
-This rule is part of the [bounds profile](/profile#SS-bounds).
-
-
+This rule is part of the [(bounds profile)](/profile#SS-bounds).
 
 ### <a href="#" name="Rsl-copy"></a>SL.con.4: don't use `memset` or `memcpy` for arguments that are not trivially-copyable
 
@@ -274,34 +258,34 @@ Doing so messes the semantics of the objects (e.g., by overwriting a `vptr`).
 Similarly for (w)memset, (w)memcpy, (w)memmove, and (w)memcmp
 
 ##### Example
-```cpp
-    struct base {
-        virtual void update() = 0;
-    };
-```
-```cpp
-    struct derived : public base {
-        void update() override {}
-    };
-```
 
 ```cpp
-    void f(derived& a, derived& b) // goodbye v-tables
-    {
-        memset(&a, 0, sizeof(derived));
-        memcpy(&a, &b, sizeof(derived));
-        memcmp(&a, &b, sizeof(derived));
-    }
+struct base {
+    virtual void update() = 0;
+};
+
+struct derived : public base {
+    void update() override {}
+};
+
+
+void f(derived& a, derived& b) // goodbye v-tables
+{
+    memset(&a, 0, sizeof(derived));
+    memcpy(&a, &b, sizeof(derived));
+    memcmp(&a, &b, sizeof(derived));
+}
 ```
 
 Instead, define proper default initialization, copy, and comparison functions
+
 ```cpp
-    void g(derived& a, derived& b)
-    {
-        a = {};    // default initialize
-        b = a;     // copy
-        if (a == b) do_something(a, b);
-    }
+void g(derived& a, derived& b)
+{
+    a = {};    // default initialize
+    b = a;     // copy
+    if (a == b) do_something(a, b);
+}
 ```
 
 ##### Enforcement
@@ -314,8 +298,6 @@ Instead, define proper default initialization, copy, and comparison functions
 * We are considering specifying bounds-safe overloads for stdlib (especially C stdlib) functions like `memcmp` and shipping them in the GSL.
 * For existing stdlib functions and types like `vector` that are not fully bounds-checked, the goal is for these features to be bounds-checked when called from code with the bounds profile on, and unchecked when called from legacy code, possibly using contracts (concurrently being proposed by several WG21 members).
 
-
-
 ## <a href="#" name="SS-string"></a>SL.str: String
 
 Text manipulation is a huge topic.
@@ -323,38 +305,33 @@ Text manipulation is a huge topic.
 This section primarily tries to clarify `std::string`'s relation to `char*`, `zstring`, `string_view`, and `gsl::span<char>`.
 The important issue of non-ASCII character sets and encodings (e.g., `wchar_t`, Unicode, and UTF-8) will be covered elsewhere.
 
-**See also**: [regular expressions](/stdlib#SS-regex)
-
+**See also**: [(regular expressions)](/stdlib#SS-regex)
 
 Here, we use "sequence of characters" or "string" to refer to a sequence of characters meant to be read as text (somehow, eventually).
 We don't consider ???
 
 String summary:
 
-* [SL.str.1: Use `std::string` to own character sequences](/stdlib#Rstr-string)
+* [(SL.str.1: Use `std::string` to own character sequences)](/stdlib#Rstr-string)
 
-* [SL.str.2: Use `std::string_view` or `gsl::span<char>` to refer to character sequences](/stdlib#Rstr-view)
+* [(SL.str.2: Use `std::string_view` or `gsl::span<char>` to refer to character sequences)](/stdlib#Rstr-view)
 
-* [SL.str.3: Use `zstring` or `czstring` to refer to a C-style, zero-terminated, sequence of characters](/stdlib#Rstr-zstring)
+* [(SL.str.3: Use `zstring` or `czstring` to refer to a C-style, zero-terminated, sequence of characters)](/stdlib#Rstr-zstring)
 
 * [SL.str.4: Use `char*` to refer to a single character](#Rstr-char*)
-* [SL.str.5: Use `std::byte` to refer to byte values that do not necessarily represent characters](/stdlib#Rstr-byte)
 
+* [(SL.str.5: Use `std::byte` to refer to byte values that do not necessarily represent characters)](/stdlib#Rstr-byte)
 
-* [SL.str.10: Use `std::string` when you need to perform locale-sensitive string operations](/stdlib#Rstr-locale)
+* [(SL.str.10: Use `std::string` when you need to perform locale-sensitive string operations)](/stdlib#Rstr-locale)
 
-* [SL.str.11: Use `gsl::span<char>` rather than `std::string_view` when you need to mutate a string](/stdlib#Rstr-span)
+* [(SL.str.11: Use `gsl::span<char>` rather than `std::string_view` when you need to mutate a string)](/stdlib#Rstr-span)
 
-* [SL.str.12: Use the `s` suffix for string literals meant to be standard-library `string`s](/stdlib#Rstr-s)
-
+* [(SL.str.12: Use the `s` suffix for string literals meant to be standard-library `string`s)](/stdlib#Rstr-s)
 
 **See also**:
 
-* [F.24 span](/functions#Rf-range)
-
-* [F.25 zstring](/functions#Rf-zstring)
-
-
+* [(F.24 span)](/functions#Rf-range)
+* [(F.25 zstring)](/functions#Rf-zstring)
 
 ### <a href="#" name="Rstr-string"></a>SL.str.1: Use `std::string` to own character sequences
 
@@ -363,46 +340,49 @@ String summary:
 `string` correctly handles allocation, ownership, copying, gradual expansion, and offers a variety of useful operations.
 
 ##### Example
+
 ```cpp
-    vector<string> read_until(const string& terminator)
-    {
-        vector<string> res;
-        for (string s; cin >> s && s != terminator; ) // read a word
-            res.push_back(s);
-        return res;
-    }
+vector<string> read_until(const string& terminator)
+{
+    vector<string> res;
+    for (string s; cin >> s && s != terminator; ) // read a word
+        res.push_back(s);
+    return res;
+}
 ```
 
 Note how `>>` and `!=` are provided for `string` (as examples of useful operations) and there are no explicit
 allocations, deallocations, or range checks (`string` takes care of those).
 
 In C++17, we might use `string_view` as the argument, rather than `const string&` to allow more flexibility to callers:
+
 ```cpp
-    vector<string> read_until(string_view terminator)   // C++17
-    {
-        vector<string> res;
-        for (string s; cin >> s && s != terminator; ) // read a word
-            res.push_back(s);
-        return res;
-    }
+vector<string> read_until(string_view terminator)   // C++17
+{
+    vector<string> res;
+    for (string s; cin >> s && s != terminator; ) // read a word
+        res.push_back(s);
+    return res;
+}
 ```
 
 ##### Example, bad
 
 Don't use C-style strings for operations that require non-trivial memory management
+
 ```cpp
-    char* cat(const char* s1, const char* s2)   // beware!
-        // return s1 + '.' + s2
-    {
-        int l1 = strlen(s1);
-        int l2 = strlen(s2);
-        char* p = (char*) malloc(l1 + l2 + 2);
-        strcpy(p, s1, l1);
-        p[l1] = '.';
-        strcpy(p + l1 + 1, s2, l2);
-        p[l1 + l2 + 1] = 0;
-        return p;
-    }
+char* cat(const char* s1, const char* s2)   // beware!
+    // return s1 + '.' + s2
+{
+    int l1 = strlen(s1);
+    int l2 = strlen(s2);
+    char* p = (char*) malloc(l1 + l2 + 2);
+    strcpy(p, s1, l1);
+    p[l1] = '.';
+    strcpy(p + l1 + 1, s2, l2);
+    p[l1 + l2 + 1] = 0;
+    return p;
+}
 ```
 
 Did we get that right?
@@ -412,8 +392,7 @@ Will this code pass a security review?
 ##### Note
 
 Do not assume that `string` is slower than lower-level techniques without measurement and remember that not all code is performance critical.
-[Don't optimize prematurely](/performance#Rper-Knuth)
-
+[(Don't optimize prematurely)](/performance#Rper-Knuth)
 
 ##### Enforcement
 
@@ -427,17 +406,17 @@ Do not assume that `string` is slower than lower-level techniques without measur
 those sequences are allocated and stored.
 
 ##### Example
+
 ```cpp
-    vector<string> read_until(string_view terminator);
-```
-```cpp
-    void user(zstring p, const string& s, string_view ss)
-    {
-        auto v1 = read_until(p);
-        auto v2 = read_until(s);
-        auto v3 = read_until(ss);
-        // ...
-    }
+vector<string> read_until(string_view terminator);
+
+void user(zstring p, const string& s, string_view ss)
+{
+    auto v1 = read_until(p);
+    auto v2 = read_until(s);
+    auto v3 = read_until(ss);
+    // ...
+}
 ```
 
 ##### Note
@@ -458,15 +437,17 @@ A plain `char*` can be a pointer to a single character, a pointer to an array of
 Distinguishing these alternatives prevents misunderstandings and bugs.
 
 ##### Example
+
 ```cpp
-    void f1(const char* s); // s is probably a string
+void f1(const char* s); // s is probably a string
 ```
 
 All we know is that it is supposed to be the nullptr or point to at least one character
+
 ```cpp
-    void f1(zstring s);     // s is a C-style string or the nullptr
-    void f1(czstring s);    // s is a C-style string constant or the nullptr
-    void f1(std::byte* s);  // s is a pointer to a byte (C++17)
+void f1(zstring s);     // s is a C-style string or the nullptr
+void f1(czstring s);    // s is a C-style string constant or the nullptr
+void f1(std::byte* s);  // s is a pointer to a byte (C++17)
 ```
 
 ##### Note
@@ -497,34 +478,26 @@ This is one of the major sources of bugs in C and C++ programs, so it is worthwh
 The variety of uses of `char*` in current code is a major source of errors.
 
 ##### Example, bad
+
 ```cpp
-    char arr[] = {'a', 'b', 'c'};
-```
-```cpp
-    void print(const char* p)
-    {
-        cout << p << '\n';
-    }
-```
-```cpp
-    void use()
-    {
-        print(arr);   // run-time error; potentially very bad
-    }
+char arr[] = {'a', 'b', 'c'};
+
+void print(const char* p)
+{
+    cout << p << '\n';
+}
+
+void use()
+{
+    print(arr);   // run-time error; potentially very bad
+}
 ```
 
 The array `arr` is not a C-style string because it is not zero-terminated.
 
 ##### Alternative
 
-See [`zstring`](/stdlib#Rstr-zstring), [`string`](/stdlib#Rstr-string), and [`string_view`](/stdlib#Rstr-view).
-
-
-
-
-
-
-
+See [(((`zstring`)](/stdlib#Rstr-zstring), [`string`)](/stdlib#Rstr-string), and [`string_view`)](/stdlib#Rstr-view).
 
 ##### Enforcement
 
@@ -538,8 +511,9 @@ Use of `char*` to represent a pointer to something that is not necessarily a cha
 and disables valuable optimizations.
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Note
@@ -550,17 +524,16 @@ C++17
 
 ???
 
-
 ### <a href="#" name="Rstr-locale"></a>SL.str.10: Use `std::string` when you need to perform locale-sensitive string operations
 
 ##### Reason
 
-`std::string` supports standard-library [`locale` facilities](/stdlib#Rstr-locale)
-
+`std::string` supports standard-library [(`locale` facilities)](/stdlib#Rstr-locale)
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Note
@@ -596,19 +569,17 @@ The compiler will flag attempts to write to a `string_view`.
 Direct expression of an idea minimizes mistakes.
 
 ##### Example
+
 ```cpp
-    auto pp1 = make_pair("Tokyo", 9.00);         // {C-style string,double} intended?
-    pair<string, double> pp2 = {"Tokyo", 9.00};  // a bit verbose
-    auto pp3 = make_pair("Tokyo"s, 9.00);        // {std::string,double}    // C++14
-    pair pp4 = {"Tokyo"s, 9.00};                 // {std::string,double}    // C++17
+auto pp1 = make_pair("Tokyo", 9.00);         // {C-style string,double} intended?
+pair<string, double> pp2 = {"Tokyo", 9.00};  // a bit verbose
+auto pp3 = make_pair("Tokyo"s, 9.00);        // {std::string,double}    // C++14
+pair pp4 = {"Tokyo"s, 9.00};                 // {std::string,double}    // C++17
 ```
-
-
 
 ##### Enforcement
 
 ???
-
 
 ## <a href="#" name="SS-io"></a>SL.io: Iostream
 
@@ -619,16 +590,11 @@ and user-defined extensions, such as streaming across networks (asio: not yet st
 
 Iostream rule summary:
 
-* [SL.io.1: Use character-level input only when you have to](/stdlib#Rio-low)
-
-* [SL.io.2: When reading, always consider ill-formed input](/stdlib#Rio-validate)
-
-* [SL.io.3: Prefer iostreams for I/O](/stdlib#Rio-streams)
-
-* [SL.io.10: Unless you use `printf`-family functions call `ios_base::sync_with_stdio(false)`](/stdlib#Rio-sync)
-
-* [SL.io.50: Avoid `endl`](/stdlib#Rio-endl)
-
+* [(SL.io.1: Use character-level input only when you have to)](/stdlib#Rio-low)
+* [(SL.io.2: When reading, always consider ill-formed input)](/stdlib#Rio-validate)
+* [(SL.io.3: Prefer iostreams for I/O)](/stdlib#Rio-streams)
+* [(SL.io.10: Unless you use `printf`-family functions call `ios_base::sync_with_stdio(false)`)](/stdlib#Rio-sync)
+* [(SL.io.50: Avoid `endl`)](/stdlib#Rio-endl)
 * [???](#???)
 
 ### <a href="#" name="Rio-low"></a>SL.io.1: Use character-level input only when you have to
@@ -639,22 +605,24 @@ Unless you genuinely just deal with individual characters, using character-level
 and potentially inefficient composition of tokens out of characters.
 
 ##### Example
+
 ```cpp
-    char c;
-    char buf[128];
-    int i = 0;
-    while (cin.get(c) && !isspace(c) && i < 128)
-        buf[i++] = c;
-    if (i == 128) {
-        // ... handle too long string ....
-    }
+char c;
+char buf[128];
+int i = 0;
+while (cin.get(c) && !isspace(c) && i < 128)
+    buf[i++] = c;
+if (i == 128) {
+    // ... handle too long string ....
+}
 ```
 
 Better (much simpler and probably faster):
+
 ```cpp
-    string s;
-    s.reserve(128);
-    cin >> s;
+string s;
+s.reserve(128);
+cin >> s;
 ```
 
 and the `reserve(128)` is probably not worthwhile.
@@ -662,7 +630,6 @@ and the `reserve(128)` is probably not worthwhile.
 ##### Enforcement
 
 ???
-
 
 ### <a href="#" name="Rio-validate"></a>SL.io.2: When reading, always consider ill-formed input
 
@@ -672,8 +639,9 @@ Errors are typically best handled as soon as possible.
 If input isn't validated, every function must be written to cope with bad data (and that is not practical).
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Enforcement
@@ -687,19 +655,21 @@ If input isn't validated, every function must be written to cope with bad data (
 `iostream`s are safe, flexible, and extensible.
 
 ##### Example
+
 ```cpp
-    // write a complex number:
-    complex<double> z{ 3, 4 };
-    cout << z << '\n';
+// write a complex number:
+complex<double> z{ 3, 4 };
+cout << z << '\n';
 ```
 
 `complex` is a user-defined type and its I/O is defined without modifying the `iostream` library.
 
 ##### Example
+
 ```cpp
-    // read a file of complex numbers:
-    for (complex<double> z; cin >> z; )
-        v.push_back(z);
+// read a file of complex numbers:
+for (complex<double> z; cin >> z; )
+    v.push_back(z);
 ```
 
 ##### Exception
@@ -731,12 +701,13 @@ Synchronizing `iostreams` with `printf-style` I/O can be costly.
 `cin` and `cout` are by default synchronized with `printf`.
 
 ##### Example
+
 ```cpp
-    int main()
-    {
-        ios_base::sync_with_stdio(false);
-        // ... use iostreams ...
-    }
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    // ... use iostreams ...
+}
 ```
 
 ##### Enforcement
@@ -752,15 +723,24 @@ as most commonly used it simply slows down output by doing redundant `flush()`s.
 This slowdown can be significant compared to `printf`-style output.
 
 ##### Example
+
 ```cpp
-    cout << "Hello, World!" << endl;    // two output operations and a flush
-    cout << "Hello, World!\n";          // one output operation and no flush
+cout << "Hello, World!" << endl;    // two output operations and a flush
+cout << "Hello, World!\n";          // one output operation and no flush
 ```
 
 ##### Note
 
 For `cin`/`cout` (and equivalent) interaction, there is no reason to flush; that's done automatically.
 For writing to a file, there is rarely a need to `flush`.
+
+##### Note
+
+For string streams (specifically `ostringstream`), the insertion of an `endl` is entirely equivalent
+to the insertion of a `'\n'` character, but also in this case, `endl` might be significantly slower.
+
+`endl` does *not* take care of producing a platform specific end-of-line sequence (like "\r\n" on
+Windows). So for a string stream, `s << endl` just inserts a *single* character, `'\n'`.
 
 ##### Note
 
@@ -784,8 +764,7 @@ It provides clocks for registering `time_points`.
 
 C Standard Library rule summary:
 
-* [S.C.1: Don't use setjmp/longjmp](/stdlib#Rclib-jmp)
-
+* [(S.C.1: Don't use setjmp/longjmp)](/stdlib#Rclib-jmp)
 * [???](#???)
 * [???](#???)
 
@@ -798,6 +777,4 @@ a `longjmp` ignores destructors, thus invalidating all resource-management strat
 ##### Enforcement
 
 Flag all occurrences of `longjmp`and `setjmp`
-
-
 

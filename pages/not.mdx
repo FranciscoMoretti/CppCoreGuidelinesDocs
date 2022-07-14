@@ -14,20 +14,13 @@ The positive arguments for alternatives to these non-rules are listed in the rul
 
 Non-rule summary:
 
-* [NR.1: Don't insist that all declarations should be at the top of a function](/not#Rnr-top)
-
-* [NR.2: Don't insist to have only a single `return`-statement in a function](/not#Rnr-single-return)
-
-* [NR.3: Don't avoid exceptions](/not#Rnr-no-exceptions)
-
-* [NR.4: Don't insist on placing each class declaration in its own source file](/not#Rnr-lots-of-files)
-
-* [NR.5: Don't use two-phase initialization](/not#Rnr-two-phase-init)
-
-* [NR.6: Don't place all cleanup actions at the end of a function and `goto exit`](/not#Rnr-goto-exit)
-
-* [NR.7: Don't make all data members `protected`](/not#Rnr-protected-data)
-
+* [(NR.1: Don't insist that all declarations should be at the top of a function)](/not#Rnr-top)
+* [(NR.2: Don't insist to have only a single `return`-statement in a function)](/not#Rnr-single-return)
+* [(NR.3: Don't avoid exceptions)](/not#Rnr-no-exceptions)
+* [(NR.4: Don't insist on placing each class declaration in its own source file)](/not#Rnr-lots-of-files)
+* [(NR.5: Don't use two-phase initialization)](/not#Rnr-two-phase-init)
+* [(NR.6: Don't place all cleanup actions at the end of a function and `goto exit`)](/not#Rnr-goto-exit)
+* [(NR.7: Don't make all data members `protected`)](/not#Rnr-protected-data)
 * ???
 
 ### <a href="#" name="Rnr-top"></a>NR.1: Don't insist that all declarations should be at the top of a function
@@ -38,40 +31,36 @@ The "all declarations on top" rule is a legacy of old programming languages that
 This leads to longer programs and more errors caused by uninitialized and wrongly initialized variables.
 
 ##### Example, bad
+
 ```cpp
-    int use(int x)
-    {
-        int i;
-        char c;
-        double d;
-```
-```cpp
-        // ... some stuff ...
-```
-```cpp
-        if (x < i) {
-            // ...
-            i = f(x, d);
-        }
-        if (i < x) {
-            // ...
-            i = g(x, c);
-        }
-        return i;
+int use(int x)
+{
+    int i;
+    char c;
+    double d;
+
+    // ... some stuff ...
+
+    if (x < i) {
+        // ...
+        i = f(x, d);
     }
+    if (i < x) {
+        // ...
+        i = g(x, c);
+    }
+    return i;
+}
 ```
 
 The larger the distance between the uninitialized variable and its use, the larger the chance of a bug.
 Fortunately, compilers catch many "used before set" errors.
 Unfortunately, compilers cannot catch all such errors and unfortunately, the bugs aren't always as simple to spot as in this small example.
 
-
 ##### Alternative
 
-* [Always initialize an object](/expr#Res-always)
-
-* [ES.21: Don't introduce a variable (or constant) before you need to use it](/expr#Res-introduce)
-
+* [(Always initialize an object)](/expr#Res-always)
+* [(ES.21: Don't introduce a variable (or constant) before you need to use it)](/expr#Res-introduce)
 
 ### <a href="#" name="Rnr-single-return"></a>NR.2: Don't insist to have only a single `return`-statement in a function
 
@@ -81,34 +70,36 @@ The single-return rule can lead to unnecessarily convoluted code and the introdu
 In particular, the single-return rule makes it harder to concentrate error checking at the top of a function.
 
 ##### Example
+
 ```cpp
-    template<class T>
-    //  requires Number<T>
-    string sign(T x)
-    {
-        if (x < 0)
-            return "negative";
-        if (x > 0)
-            return "positive";
-        return "zero";
-    }
+template<class T>
+//  requires Number<T>
+string sign(T x)
+{
+    if (x < 0)
+        return "negative";
+    if (x > 0)
+        return "positive";
+    return "zero";
+}
 ```
 
 to use a single return only we would have to do something like
+
 ```cpp
-    template<class T>
-    //  requires Number<T>
-    string sign(T x)        // bad
-    {
-        string res;
-        if (x < 0)
-            res = "negative";
-        else if (x > 0)
-            res = "positive";
-        else
-            res = "zero";
-        return res;
-    }
+template<class T>
+//  requires Number<T>
+string sign(T x)        // bad
+{
+    string res;
+    if (x < 0)
+        res = "negative";
+    else if (x > 0)
+        res = "positive";
+    else
+        res = "zero";
+    return res;
+}
 ```
 
 This is both longer and likely to be less efficient.
@@ -116,32 +107,33 @@ The larger and more complicated the function is, the more painful the workaround
 Of course many simple functions will naturally have just one `return` because of their simpler inherent logic.
 
 ##### Example
+
 ```cpp
-    int index(const char* p)
-    {
-        if (!p) return -1;  // error indicator: alternatively "throw nullptr_error{}"
-        // ... do a lookup to find the index for p
-        return i;
-    }
+int index(const char* p)
+{
+    if (!p) return -1;  // error indicator: alternatively "throw nullptr_error{}"
+    // ... do a lookup to find the index for p
+    return i;
+}
 ```
 
 If we applied the rule, we'd get something like
+
 ```cpp
-    int index2(const char* p)
-    {
-        int i;
-        if (!p)
-            i = -1;  // error indicator
-        else {
-            // ... do a lookup to find the index for p
-        }
-        return i;
+int index2(const char* p)
+{
+    int i;
+    if (!p)
+        i = -1;  // error indicator
+    else {
+        // ... do a lookup to find the index for p
     }
+    return i;
+}
 ```
 
 Note that we (deliberately) violated the rule against uninitialized variables because this style commonly leads to that.
-Also, this style is a temptation to use the [goto exit](/not#Rnr-goto-exit) non-rule.
-
+Also, this style is a temptation to use the [(goto exit)](/not#Rnr-goto-exit) non-rule.
 
 ##### Alternative
 
@@ -173,30 +165,30 @@ There are specialized applications where exceptions indeed can be inappropriate
 Consider the major objections to exceptions in turn
 
 * Exceptions are inefficient:
-Compared to what?
-When comparing make sure that the same set of errors are handled and that they are handled equivalently.
-In particular, do not compare a program that immediately terminates on seeing an error to a program
-that carefully cleans up resources before logging an error.
-Yes, some systems have poor exception handling implementations; sometimes, such implementations force us to use
-other error-handling approaches, but that's not a fundamental problem with exceptions.
-When using an efficiency argument - in any context - be careful that you have good data that actually provides
-insight into the problem under discussion.
+  Compared to what?
+  When comparing make sure that the same set of errors are handled and that they are handled equivalently.
+  In particular, do not compare a program that immediately terminates on seeing an error to a program
+  that carefully cleans up resources before logging an error.
+  Yes, some systems have poor exception handling implementations; sometimes, such implementations force us to use
+  other error-handling approaches, but that's not a fundamental problem with exceptions.
+  When using an efficiency argument - in any context - be careful that you have good data that actually provides
+  insight into the problem under discussion.
 * Exceptions lead to leaks and errors.
-They do not.
-If your program is a rat's nest of pointers without an overall strategy for resource management,
-you have a problem whatever you do.
-If your system consists of a million lines of such code,
-you probably will not be able to use exceptions,
-but that's a problem with excessive and undisciplined pointer use, rather than with exceptions.
-In our opinion, you need RAII to make exception-based error handling simple and safe -- simpler and safer than alternatives.
+  They do not.
+  If your program is a rat's nest of pointers without an overall strategy for resource management,
+  you have a problem whatever you do.
+  If your system consists of a million lines of such code,
+  you probably will not be able to use exceptions,
+  but that's a problem with excessive and undisciplined pointer use, rather than with exceptions.
+  In our opinion, you need RAII to make exception-based error handling simple and safe -- simpler and safer than alternatives.
 * Exception performance is not predictable.
-If you are in a hard-real-time system where you must guarantee completion of a task in a given time,
-you need tools to back up such guarantees.
-As far as we know such tools are not available (at least not to most programmers).
+  If you are in a hard-real-time system where you must guarantee completion of a task in a given time,
+  you need tools to back up such guarantees.
+  As far as we know such tools are not available (at least not to most programmers).
 * The exception-handling run-time support takes up too much space.
-This can be the case in small (usually embedded) systems.
-However, before abandoning exceptions consider what space consistent error-handling using error-codes would require
-and what failure to catch an error would cost.
+  This can be the case in small (usually embedded) systems.
+  However, before abandoning exceptions consider what space consistent error-handling using error-codes would require
+  and what failure to catch an error would cost.
 
 Many, possibly most, problems with exceptions stem from historical needs to interact with messy old code.
 
@@ -214,14 +206,14 @@ Remember
 * Exceptions are not for errors that require instant termination of a module/system after a non-recoverable error.
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Alternative
 
-* [RAII](/errors#Re-raii)
-
+* [(RAII)](/errors#Re-raii)
 * Contracts/assertions: Use GSL's `Expects` and `Ensures` (until we get language support for contracts)
 
 ### <a href="#" name="Rnr-lots-of-files"></a>NR.4: Don't insist on placing each class declaration in its own source file
@@ -232,8 +224,9 @@ The resulting number of files from placing each class in its own file are hard t
 Individual classes are rarely a good logical unit of maintenance and distribution.
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Alternative
@@ -249,112 +242,102 @@ more complicated code (having to deal with semi-constructed objects),
 and errors (when we didn't deal correctly with semi-constructed objects consistently).
 
 ##### Example, bad
+
 ```cpp
-    // Old conventional style: many problems
-```
-```cpp
-    class Picture
+// Old conventional style: many problems
+
+class Picture
+{
+    int mx;
+    int my;
+    int * data;
+public:
+    // main problem: constructor does not fully construct
+    Picture(int x, int y)
     {
-        int mx;
-        int my;
-        int * data;
-    public:
-        // main problem: constructor does not fully construct
-        Picture(int x, int y)
-        {
-            mx = x;         // also bad: assignment in constructor body
-                            // rather than in member initializer
-            my = y;
-            data = nullptr; // also bad: constant initialization in constructor
-                            // rather than in member initializer
-        }
-```
-```cpp
-        ~Picture()
-        {
-            Cleanup();
-        }
-```
-```cpp
-        // ...
-```
-```cpp
-        // bad: two-phase initialization
-        bool Init()
-        {
-            // invariant checks
-            if (mx <= 0 || my <= 0) {
-                return false;
-            }
-            if (data) {
-                return false;
-            }
-            data = (int*) malloc(mx*my*sizeof(int));   // also bad: owning raw * and malloc
-            return data != nullptr;
-        }
-```
-```cpp
-        // also bad: no reason to make cleanup a separate function
-        void Cleanup()
-        {
-            if (data) free(data);
-            data = nullptr;
-        }
-    };
-```
-```cpp
-    Picture picture(100, 0); // not ready-to-use picture here
-    // this will fail..
-    if (!picture.Init()) {
-        puts("Error, invalid picture");
+        mx = x;         // also bad: assignment in constructor body
+                        // rather than in member initializer
+        my = y;
+        data = nullptr; // also bad: constant initialization in constructor
+                        // rather than in member initializer
     }
-    // now have a invalid picture object instance.
+
+    ~Picture()
+    {
+        Cleanup();
+    }
+
+    // ...
+
+    // bad: two-phase initialization
+    bool Init()
+    {
+        // invariant checks
+        if (mx <= 0 || my <= 0) {
+            return false;
+        }
+        if (data) {
+            return false;
+        }
+        data = (int*) malloc(mx*my*sizeof(int));   // also bad: owning raw * and malloc
+        return data != nullptr;
+    }
+
+    // also bad: no reason to make cleanup a separate function
+    void Cleanup()
+    {
+        if (data) free(data);
+        data = nullptr;
+    }
+};
+
+Picture picture(100, 0); // not ready-to-use picture here
+// this will fail..
+if (!picture.Init()) {
+    puts("Error, invalid picture");
+}
+// now have a invalid picture object instance.
 ```
 
 ##### Example, good
+
 ```cpp
-    class Picture
+class Picture
+{
+    int mx;
+    int my;
+    vector<int> data;
+
+    static int check_size(int size)
     {
-        int mx;
-        int my;
-        vector<int> data;
-```
-```cpp
-        static int check_size(int size)
-        {
-            // invariant check
-            Expects(size > 0);
-            return size;
-        }
-```
-```cpp
-    public:
-        // even better would be a class for a 2D Size as one single parameter
-        Picture(int x, int y)
-            : mx(check_size(x))
-            , my(check_size(y))
-            // now we know x and y have a valid size
-            , data(mx * my) // will throw std::bad_alloc on error
-        {
-            // picture is ready-to-use
-        }
-```
-```cpp
-        // compiler generated dtor does the job. (also see C.21)
-```
-```cpp
-        // ...
-    };
-```
-```cpp
-    Picture picture1(100, 100);
-    // picture is ready-to-use here...
-```
-```cpp
-    // not a valid size for y,
-    // default contract violation behavior will call std::terminate then
-    Picture picture2(100, 0);
-    // not reach here...
+        // invariant check
+        Expects(size > 0);
+        return size;
+    }
+
+public:
+    // even better would be a class for a 2D Size as one single parameter
+    Picture(int x, int y)
+        : mx(check_size(x))
+        , my(check_size(y))
+        // now we know x and y have a valid size
+        , data(mx * my) // will throw std::bad_alloc on error
+    {
+        // picture is ready-to-use
+    }
+
+    // compiler generated dtor does the job. (also see C.21)
+
+    // ...
+};
+
+Picture picture1(100, 100);
+// picture is ready-to-use here...
+
+// not a valid size for y,
+// default contract violation behavior will call std::terminate then
+Picture picture2(100, 0);
+// not reach here...
 ```
 
 ##### Alternative
@@ -370,28 +353,27 @@ and errors (when we didn't deal correctly with semi-constructed objects consiste
 This technique is a pre-exception technique for RAII-like resource and error handling.
 
 ##### Example, bad
+
 ```cpp
-    void do_something(int n)
-    {
-        if (n < 100) goto exit;
-        // ...
-        int* p = (int*) malloc(n);
-        // ...
-        if (some_error) goto_exit;
-        // ...
-    exit:
-        free(p);
-    }
+void do_something(int n)
+{
+    if (n < 100) goto exit;
+    // ...
+    int* p = (int*) malloc(n);
+    // ...
+    if (some_error) goto_exit;
+    // ...
+exit:
+    free(p);
+}
 ```
 
 and spot the bug.
 
 ##### Alternative
 
-* Use exceptions and [RAII](/errors#Re-raii)
-
-* for non-RAII resources, use [`finally`](/errors#Re-finally).
-
+* Use exceptions and [(RAII)](/errors#Re-raii)
+* for non-RAII resources, use [(`finally`)](/errors#Re-finally).
 
 ### <a href="#" name="Rnr-protected-data"></a>NR.7: Don't make all data members `protected`
 
@@ -402,13 +384,12 @@ and spot the bug.
 `protected` data is the class hierarchy equivalent to global data.
 
 ##### Example
+
 ```cpp
-    ???
+???
 ```
 
 ##### Alternative
 
-* [Make member data `public` or (preferably) `private`](/class#Rh-protected)
-
-
+* [(Make member data `public` or (preferably) `private`)](/class#Rh-protected)
 

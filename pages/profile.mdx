@@ -4,8 +4,7 @@ Ideally, we would follow all of the guidelines.
 That would give the cleanest, most regular, least error-prone, and often the fastest code.
 Unfortunately, that is usually impossible because we have to fit our code into large code bases and use existing libraries.
 Often, such code has been written over decades and does not follow these guidelines.
-We must aim for [gradual adoption](/modernizing#S-modernizing).
-
+We must aim for [(gradual adoption)](/modernizing#S-modernizing).
 
 Whatever strategy for gradual adoption we adopt, we need to be able to apply sets of related guidelines to address some set
 of problems first and leave the rest until later.
@@ -29,12 +28,9 @@ A profile might also introduce additional library types to ease conformance and 
 
 Profiles summary:
 
-* [Pro.type: Type safety](/profile#SS-type)
-
-* [Pro.bounds: Bounds safety](/profile#SS-bounds)
-
-* [Pro.lifetime: Lifetime safety](/profile#SS-lifetime)
-
+* [(Pro.type: Type safety)](/profile#SS-type)
+* [(Pro.bounds: Bounds safety)](/profile#SS-bounds)
+* [(Pro.lifetime: Lifetime safety)](/profile#SS-lifetime)
 
 In the future, we expect to define many more profiles and add more checks to existing profiles.
 Candidates include:
@@ -48,11 +44,12 @@ Candidates include:
 Enabling a profile is implementation defined; typically, it is set in the analysis tool used.
 
 To suppress enforcement of a profile check, place a `suppress` annotation on a language contract. For example:
+
 ```cpp
-    [[suppress(bounds)]] char* raw_find(char* p, int n, char x)    // find x in p[0]..p[n - 1]
-    {
-        // ...
-    }
+[[suppress(bounds)]] char* raw_find(char* p, int n, char x)    // find x in p[0]..p[n - 1]
+{
+    // ...
+}
 ```
 
 Now `raw_find()` can scramble memory to its heart's content.
@@ -66,63 +63,41 @@ It does so by focusing on removing the primary sources of type violations, inclu
 For the purposes of this section,
 type-safety is defined to be the property that a variable is not used in a way that doesn't obey the rules for the type of its definition.
 Memory accessed as a type `T` should not be valid memory that actually contains an object of an unrelated type `U`.
-Note that the safety is intended to be complete when combined also with [Bounds safety](/profile#SS-bounds) and [Lifetime safety](/profile#SS-lifetime).
-
-
-
+Note that the safety is intended to be complete when combined also with [((Bounds safety)](/profile#SS-bounds) and [Lifetime safety)](/profile#SS-lifetime).
 
 An implementation of this profile shall recognize the following patterns in source code as non-conforming and issue a diagnostic.
 
 Type safety profile summary:
 
-* <a href="#" name="Pro-type-avoidcasts"></a>Type.1: [Avoid casts](/expr#Res-casts):
+* <a href="#" name="Pro-type-avoidcasts"></a>Type.1: [(Avoid casts)](/expr#Res-casts):
 
-
-  1. <a href="#" name="Pro-type-reinterpretcast"></a>Don't use `reinterpret_cast`; A strict version of [Avoid casts](/expr#Res-casts) and [prefer named casts](/expr#Res-casts-named).
-
-  2. <a href="#" name="Pro-type-arithmeticcast"></a>Don't use `static_cast` for arithmetic types; A strict version of [Avoid casts](/expr#Res-casts) and [prefer named casts](/expr#Res-casts-named).
-
-  3. <a href="#" name="Pro-type-identitycast"></a>Don't cast between pointer types where the source type and the target type are the same; A strict version of [Avoid casts](/expr#Res-casts).
-
-  4. <a href="#" name="Pro-type-implicitpointercast"></a>Don't cast between pointer types when the conversion could be implicit; A strict version of [Avoid casts](/expr#Res-casts).
-
+  1. <a href="#" name="Pro-type-reinterpretcast"></a>Don't use `reinterpret_cast`; A strict version of [((Avoid casts)](/expr#Res-casts) and [prefer named casts)](/expr#Res-casts-named).
+  2. <a href="#" name="Pro-type-arithmeticcast"></a>Don't use `static_cast` for arithmetic types; A strict version of [((Avoid casts)](/expr#Res-casts) and [prefer named casts)](/expr#Res-casts-named).
+  3. <a href="#" name="Pro-type-identitycast"></a>Don't cast between pointer types where the source type and the target type are the same; A strict version of [(Avoid casts)](/expr#Res-casts).
+  4. <a href="#" name="Pro-type-implicitpointercast"></a>Don't cast between pointer types when the conversion could be implicit; A strict version of [(Avoid casts)](/expr#Res-casts).
 * <a href="#" name="Pro-type-downcast"></a>Type.2: Don't use `static_cast` to downcast:
-[Use `dynamic_cast` instead](#Rh-dynamic_cast).
+  [Use `dynamic_cast` instead](#Rh-dynamic_cast).
 * <a href="#" name="Pro-type-constcast"></a>Type.3: Don't use `const_cast` to cast away `const` (i.e., at all):
-[Don't cast away const](/expr#Res-casts-const).
-
+  [(Don't cast away const)](/expr#Res-casts-const).
 * <a href="#" name="Pro-type-cstylecast"></a>Type.4: Don't use C-style `(T)expression` or functional `T(expression)` casts:
-Prefer [construction](/expr#Res-construct) or [named casts](/expr#Res-casts-named) or `T{expression}`.
-
-
-
+  Prefer [((construction)](/expr#Res-construct) or [named casts)](/expr#Res-casts-named) or `T{expression}`.
 * <a href="#" name="Pro-type-init"></a>Type.5: Don't use a variable before it has been initialized:
-[always initialize](/expr#Res-always).
-
+  [(always initialize)](/expr#Res-always).
 * <a href="#" name="Pro-type-memberinit"></a>Type.6: Always initialize a member variable:
-[always initialize](/expr#Res-always),
-
-possibly using [default constructors](/class#Rc-default0) or
-
-[default member initializers](/class#Rc-in-class-initializer).
-
+  [(always initialize)](/expr#Res-always),
+  possibly using [(default constructors)](/class#Rc-default0) or
+  [(default member initializers)](/class#Rc-in-class-initializer).
 * <a href="#" name="Pro-type-unon"></a>Type.7: Avoid naked union:
-[Use `variant` instead](/class#Ru-naked).
-
+  [(Use `variant` instead)](/class#Ru-naked).
 * <a href="#" name="Pro-type-varargs"></a>Type.8: Avoid varargs:
-[Don't use `va_arg` arguments](/functions#F-varargs).
-
+  [(Don't use `va_arg` arguments)](/functions#F-varargs).
 
 ##### Impact
 
 With the type-safety profile you can trust that every operation is applied to a valid object.
 An exception can be thrown to indicate errors that cannot be detected statically (at compile time).
-Note that this type-safety can be complete only if we also have [Bounds safety](/profile#SS-bounds) and [Lifetime safety](/profile#SS-lifetime).
-
-
-
+Note that this type-safety can be complete only if we also have [((Bounds safety)](/profile#SS-bounds) and [Lifetime safety)](/profile#SS-lifetime).
 Without those guarantees, a region of memory could be accessed independent of which object, objects, or parts of objects are stored in it.
-
 
 ## <a href="#" name="SS-bounds"></a>Pro.bounds: Bounds safety profile
 
@@ -131,32 +106,19 @@ It does so by focusing on removing the primary sources of bounds violations: poi
 One of the core features of this profile is to restrict pointers to only refer to single objects, not arrays.
 
 We define bounds-safety to be the property that a program does not use an object to access memory outside of the range that was allocated for it.
-Bounds safety is intended to be complete only when combined with [Type safety](/profile#SS-type) and [Lifetime safety](/profile#SS-lifetime),
-
-
-
+Bounds safety is intended to be complete only when combined with [((Type safety)](/profile#SS-type) and [Lifetime safety)](/profile#SS-lifetime),
 which cover other unsafe operations that allow bounds violations.
 
 Bounds safety profile summary:
 
 * <a href="#" name="Pro-bounds-arithmetic"></a>Bounds.1: Don't use pointer arithmetic. Use `span` instead:
-[Pass pointers to single objects (only)](/interfaces#Ri-array) and [Keep pointer arithmetic simple](/expr#Res-ptr).
-
-
-
+  [((Pass pointers to single objects (only))](/interfaces#Ri-array) and [Keep pointer arithmetic simple)](/expr#Res-ptr).
 * <a href="#" name="Pro-bounds-arrayindex"></a>Bounds.2: Only index into arrays using constant expressions:
-[Pass pointers to single objects (only)](/interfaces#Ri-array) and [Keep pointer arithmetic simple](/expr#Res-ptr).
-
-
-
+  [((Pass pointers to single objects (only))](/interfaces#Ri-array) and [Keep pointer arithmetic simple)](/expr#Res-ptr).
 * <a href="#" name="Pro-bounds-decay"></a>Bounds.3: No array-to-pointer decay:
-[Pass pointers to single objects (only)](/interfaces#Ri-array) and [Keep pointer arithmetic simple](/expr#Res-ptr).
-
-
-
+  [((Pass pointers to single objects (only))](/interfaces#Ri-array) and [Keep pointer arithmetic simple)](/expr#Res-ptr).
 * <a href="#" name="Pro-bounds-stdlib"></a>Bounds.4: Don't use standard-library functions and types that are not bounds-checked:
-[Use the standard library in a type-safe manner](/stdlib#Rsl-bounds).
-
+  [(Use the standard library in a type-safe manner)](/stdlib#Rsl-bounds).
 
 ##### Impact
 
@@ -165,7 +127,6 @@ This eliminates a large class of insidious and hard-to-find errors, including th
 This closes security loopholes as well as a prominent source of memory corruption (when writing out of bounds).
 Even if an out-of-bounds access is "just a read", it can lead to invariant violations (when the accessed isn't of the assumed type)
 and "mysterious values."
-
 
 ## <a href="#" name="SS-lifetime"></a>Pro.lifetime: Lifetime safety profile
 
@@ -178,8 +139,7 @@ For example, a pointer might be uninitialized, the `nullptr`, point beyond the r
 Lifetime safety profile summary:
 
 * <a href="#" name="Pro-lifetime-invalid-deref"></a>Lifetime.1: Don't dereference a possibly invalid pointer:
-[detect or avoid](/expr#Res-deref).
-
+  [(detect or avoid)](/expr#Res-deref).
 
 ##### Impact
 
@@ -190,5 +150,4 @@ Once completely enforced through a combination of style rules, static analysis, 
 * improves performance by eliminating redundant "paranoia" checks
 * increases confidence in correctness of code
 * avoids undefined behavior by enforcing a key C++ language rule
-
 

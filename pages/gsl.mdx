@@ -18,16 +18,11 @@ Therefore, please consult your GSL documentation to find out more.
 
 Summary of GSL components:
 
-* [GSL.view: Views](/gsl#SS-views)
-
-* [GSL.owner](/gsl#SS-ownership)
-
-* [GSL.assert: Assertions](/gsl#SS-assertions)
-
-* [GSL.util: Utilities](/gsl#SS-utilities)
-
-* [GSL.concept: Concepts](/gsl#SS-gsl-concepts)
-
+* [(GSL.view: Views)](/gsl#SS-views)
+* [(GSL.owner)](/gsl#SS-ownership)
+* [(GSL.assert: Assertions)](/gsl#SS-assertions)
+* [(GSL.util: Utilities)](/gsl#SS-utilities)
+* [(GSL.concept: Concepts)](/gsl#SS-gsl-concepts)
 
 We plan for a "ISO C++ standard style" semi-formal specification of the GSL.
 
@@ -39,8 +34,7 @@ These types allow the user to distinguish between owning and non-owning pointers
 
 These "views" are never owners.
 
-References are never owners (see [R.4](/resource#Rr-ref)). Note: References have many opportunities to outlive the objects they refer to (returning a local variable by reference, holding a reference to an element of a vector and doing `push_back`, binding to `std::max(x, y + 1)`, etc). The Lifetime safety profile aims to address those things, but even so `owner<T&>` does not make sense and is discouraged.
-
+References are never owners (see [(R.4)](/resource#Rr-ref)). Note: References have many opportunities to outlive the objects they refer to (returning a local variable by reference, holding a reference to an element of a vector and doing `push_back`, binding to `std::max(x, y + 1)`, etc). The Lifetime safety profile aims to address those things, but even so `owner<T&>` does not make sense and is discouraged.
 
 The names are mostly ISO standard-library style (lower case and underscore):
 
@@ -69,6 +63,7 @@ If something is not supposed to be `nullptr`, say so:
   `T` can be any type for which `==nullptr` is meaningful.
 
 * `span<T>`       // `[p:p+n)`, constructor from `{p, q}` and `{p, n}`; `T` is the pointer type
+
 * `span_p<T>`     // `{p, predicate}` `[p:q)` where `q` is the first element for which `predicate(*p)` is true
 
 A `span<T>` refers to zero or more mutable `T`s unless `T` is a `const` type.
@@ -82,7 +77,6 @@ A `char*` that points to more than one `char` but is not a C-style string (e.g.,
 Logically, those last two aliases are not needed, but we are not always logical, and they make the distinction between a pointer to one `char` and a pointer to a C-style string explicit.
 A sequence of characters that is not assumed to be zero-terminated should be a `span<char>`, or if that is impossible because of ABI issues a `char*`, rather than a `zstring`.
 
-
 Use `not_null<zstring>` for C-style strings that cannot be `nullptr`. ??? Do we need a name for `not_null<zstring>`? or is its ugliness a feature?
 
 ## <a href="#" name="SS-ownership"></a>GSL.owner: Ownership pointers
@@ -95,9 +89,9 @@ Use `not_null<zstring>` for C-style strings that cannot be `nullptr`. ??? Do we 
 
 ## <a href="#" name="SS-assertions"></a>GSL.assert: Assertions
 
-* `Expects`     // precondition assertion. Currently placed in function bodies. Later, should be moved to declarations.```cpp
-                // `Expects(p)` terminates the program unless `p == true`
-                // `Expects` is under control of some options (enforcement, error message, alternatives to terminate)
+* `Expects`     // precondition assertion. Currently placed in function bodies. Later, should be moved to declarations.
+  // `Expects(p)` terminates the program unless `p == true`
+  // `Expects` is under control of some options (enforcement, error message, alternatives to terminate)
 * `Ensures`     // postcondition assertion. Currently placed in function bodies. Later, should be moved to declarations.
 
 These assertions are currently macros (yuck!) and must appear in function definitions (only)

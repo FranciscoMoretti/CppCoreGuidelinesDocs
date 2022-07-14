@@ -9,44 +9,25 @@ IDEs and tools can help (as well as hinder).
 
 Naming and layout rules:
 
-* [NL.1: Don't say in comments what can be clearly stated in code](/naming#Rl-comments)
-
-* [NL.2: State intent in comments](/naming#Rl-comments-intent)
-
-* [NL.3: Keep comments crisp](/naming#Rl-comments-crisp)
-
-* [NL.4: Maintain a consistent indentation style](/naming#Rl-indent)
-
-* [NL.5: Avoid encoding type information in names](/naming#Rl-name-type)
-
-* [NL.7: Make the length of a name roughly proportional to the length of its scope](/naming#Rl-name-length)
-
-* [NL.8: Use a consistent naming style](/naming#Rl-name)
-
-* [NL.9: Use `ALL_CAPS` for macro names only](/naming#Rl-all-caps)
-
-* [NL.10: Prefer `underscore_style` names](/naming#Rl-camel)
-
-* [NL.11: Make literals readable](/naming#Rl-literals)
-
-* [NL.15: Use spaces sparingly](/naming#Rl-space)
-
-* [NL.16: Use a conventional class member declaration order](/naming#Rl-order)
-
-* [NL.17: Use K&R-derived layout](/naming#Rl-knr)
-
-* [NL.18: Use C++-style declarator layout](/naming#Rl-ptr)
-
-* [NL.19: Avoid names that are easily misread](/naming#Rl-misread)
-
-* [NL.20: Don't place two statements on the same line](/naming#Rl-stmt)
-
-* [NL.21: Declare one name (only) per declaration](/naming#Rl-dcl)
-
-* [NL.25: Don't use `void` as an argument type](/naming#Rl-void)
-
-* [NL.26: Use conventional `const` notation](/naming#Rl-const)
-
+* [(NL.1: Don't say in comments what can be clearly stated in code)](/naming#Rl-comments)
+* [(NL.2: State intent in comments)](/naming#Rl-comments-intent)
+* [(NL.3: Keep comments crisp)](/naming#Rl-comments-crisp)
+* [(NL.4: Maintain a consistent indentation style)](/naming#Rl-indent)
+* [(NL.5: Avoid encoding type information in names)](/naming#Rl-name-type)
+* [(NL.7: Make the length of a name roughly proportional to the length of its scope)](/naming#Rl-name-length)
+* [(NL.8: Use a consistent naming style)](/naming#Rl-name)
+* [(NL.9: Use `ALL_CAPS` for macro names only)](/naming#Rl-all-caps)
+* [(NL.10: Prefer `underscore_style` names)](/naming#Rl-camel)
+* [(NL.11: Make literals readable)](/naming#Rl-literals)
+* [(NL.15: Use spaces sparingly)](/naming#Rl-space)
+* [(NL.16: Use a conventional class member declaration order)](/naming#Rl-order)
+* [(NL.17: Use K\&R-derived layout)](/naming#Rl-knr)
+* [(NL.18: Use C++-style declarator layout)](/naming#Rl-ptr)
+* [(NL.19: Avoid names that are easily misread)](/naming#Rl-misread)
+* [(NL.20: Don't place two statements on the same line)](/naming#Rl-stmt)
+* [(NL.21: Declare one name (only) per declaration)](/naming#Rl-dcl)
+* [(NL.25: Don't use `void` as an argument type)](/naming#Rl-void)
+* [(NL.26: Use conventional `const` notation)](/naming#Rl-const)
 
 Most of these rules are aesthetic and programmers hold strong opinions.
 IDEs also tend to have defaults and a range of alternatives.
@@ -70,8 +51,9 @@ Comments are less precise than code.
 Comments are not updated as consistently as code.
 
 ##### Example, bad
+
 ```cpp
-    auto x = m * v1 + vv;   // multiply m with v1 and add the result to vv
+auto x = m * v1 + vv;   // multiply m with v1 and add the result to vv
 ```
 
 ##### Enforcement
@@ -85,13 +67,14 @@ Build an AI program that interprets colloquial English text and see if what is s
 Code says what is done, not what is supposed to be done. Often intent can be stated more clearly and concisely than the implementation.
 
 ##### Example
+
 ```cpp
-    void stable_sort(Sortable& c)
-        // sort c in the order determined by <, keep equal elements (as defined by ==) in
-        // their original relative order
-    {
-        // ... quite a few lines of non-trivial code ...
-    }
+void stable_sort(Sortable& c)
+    // sort c in the order determined by <, keep equal elements (as defined by ==) in
+    // their original relative order
+{
+    // ... quite a few lines of non-trivial code ...
+}
 ```
 
 ##### Note
@@ -122,22 +105,23 @@ not possible.
 Readability. Avoidance of "silly mistakes."
 
 ##### Example, bad
+
 ```cpp
-    int i;
-    for (i = 0; i < max; ++i); // bug waiting to happen
-    if (i == j)
-        return i;
+int i;
+for (i = 0; i < max; ++i); // bug waiting to happen
+if (i == j)
+    return i;
 ```
 
 ##### Note
 
 Always indenting the statement after `if (...)`, `for (...)`, and `while (...)` is usually a good idea:
+
 ```cpp
-    if (i < 0) error("negative argument");
-```
-```cpp
-    if (i < 0)
-        error("negative argument");
+if (i < 0) error("negative argument");
+
+if (i < 0)
+    error("negative argument");
 ```
 
 ##### Enforcement
@@ -153,32 +137,33 @@ Also, if the type of a variable is changed, code using it will have to be modifi
 Minimize unintentional conversions.
 
 ##### Example, bad
+
 ```cpp
-    void print_int(int i);
-    void print_string(const char*);
-```
-```cpp
-    print_int(1);          // repetitive, manual type matching
-    print_string("xyzzy"); // repetitive, manual type matching
+void print_int(int i);
+void print_string(const char*);
+
+print_int(1);          // repetitive, manual type matching
+print_string("xyzzy"); // repetitive, manual type matching
 ```
 
 ##### Example, good
+
 ```cpp
-    void print(int i);
-    void print(string_view);    // also works on any string-like sequence
-```
-```cpp
-    print(1);              // clear, automatic type matching
-    print("xyzzy");        // clear, automatic type matching
+void print(int i);
+void print(string_view);    // also works on any string-like sequence
+
+print(1);              // clear, automatic type matching
+print("xyzzy");        // clear, automatic type matching
 ```
 
 ##### Note
 
 Names with types encoded are either verbose or cryptic.
+
 ```cpp
-    printS  // print a std::string
-    prints  // print a C-style string
-    printi  // print an int
+printS  // print a std::string
+prints  // print a C-style string
+printi  // print an int
 ```
 
 Requiring techniques like Hungarian notation to encode a type has been used in untyped languages, but is generally unnecessary and actively harmful in a strongly statically-typed language like C++, because the annotations get out of date (the warts are just like comments and rot just like them) and they interfere with good use of the language (use the same name and overload resolution instead).
@@ -186,16 +171,16 @@ Requiring techniques like Hungarian notation to encode a type has been used in u
 ##### Note
 
 Some styles use very general (not type-specific) prefixes to denote the general use of a variable.
+
 ```cpp
-    auto p = new User();
-    auto p = make_unique<User>();
-    // note: "p" is not being used to say "raw pointer to type User,"
-    //       just generally to say "this is an indirection"
-```
-```cpp
-    auto cntHits = calc_total_of_hits(/*...*/);
-    // note: "cnt" is not being used to encode a type,
-    //       just generally to say "this is a count of something"
+auto p = new User();
+auto p = make_unique<User>();
+// note: "p" is not being used to say "raw pointer to type User,"
+//       just generally to say "this is an indirection"
+
+auto cntHits = calc_total_of_hits(/*...*/);
+// note: "cnt" is not being used to encode a type,
+//       just generally to say "this is a count of something"
 ```
 
 This is not harmful and does not fall under this guideline because it does not encode type information.
@@ -203,11 +188,12 @@ This is not harmful and does not fall under this guideline because it does not e
 ##### Note
 
 Some styles distinguish members from local variable, and/or from global variable.
+
 ```cpp
-    struct S {
-        int m_;
-        S(int m) : m_{abs(m)} { }
-    };
+struct S {
+    int m_;
+    S(int m) : m_{abs(m)} { }
+};
 ```
 
 This is not harmful and does not fall under this guideline because it does not encode type information.
@@ -216,14 +202,14 @@ This is not harmful and does not fall under this guideline because it does not e
 
 Like C++, some styles distinguish types from non-types.
 For example, by capitalizing type names, but not the names of functions and variables.
+
 ```cpp
-    typename<typename T>
-    class HashTable {   // maps string to T
-        // ...
-    };
-```
-```cpp
-    HashTable<int> index;
+typename<typename T>
+class HashTable {   // maps string to T
+    // ...
+};
+
+HashTable<int> index;
 ```
 
 This is not harmful and does not fall under this guideline because it does not encode type information.
@@ -233,20 +219,17 @@ This is not harmful and does not fall under this guideline because it does not e
 **Rationale**: The larger the scope the greater the chance of confusion and of an unintended name clash.
 
 ##### Example
+
 ```cpp
-    double sqrt(double x);   // return the square root of x; x must be non-negative
-```
-```cpp
-    int length(const char* p);  // return the number of characters in a zero-terminated C-style string
-```
-```cpp
-    int length_of_string(const char zero_terminated_array_of_char[])    // bad: verbose
-```
-```cpp
-    int g;      // bad: global variable with a cryptic name
-```
-```cpp
-    int open;   // bad: global variable with a short, popular name
+double sqrt(double x);   // return the square root of x; x must be non-negative
+
+int length(const char* p);  // return the number of characters in a zero-terminated C-style string
+
+int length_of_string(const char zero_terminated_array_of_char[])    // bad: verbose
+
+int g;      // bad: global variable with a cryptic name
+
+int open;   // bad: global variable with a short, popular name
 ```
 
 The use of `p` for pointer and `x` for a floating-point variable is conventional and non-confusing in a restricted scope.
@@ -297,9 +280,10 @@ Some conventions capitalize the first letter, some don't.
 ##### Note
 
 Try to be consistent in your use of acronyms and lengths of identifiers:
+
 ```cpp
-    int mtbf {12};
-    int mean_time_between_failures {12}; // make up your mind
+int mtbf {12};
+int mean_time_between_failures {12}; // make up your mind
 ```
 
 ##### Enforcement
@@ -313,19 +297,21 @@ Would be possible except for the use of libraries with varying conventions.
 To avoid confusing macros with names that obey scope and type rules.
 
 ##### Example
+
 ```cpp
-    void f()
-    {
-        const int SIZE{1000};  // Bad, use 'size' instead
-        int v[SIZE];
-    }
+void f()
+{
+    const int SIZE{1000};  // Bad, use 'size' instead
+    int v[SIZE];
+}
 ```
 
 ##### Note
 
 This rule applies to non-macro symbolic constants:
+
 ```cpp
-    enum bad { BAD, WORSE, HORRIBLE }; // BAD
+enum bad { BAD, WORSE, HORRIBLE }; // BAD
 ```
 
 ##### Enforcement
@@ -342,12 +328,10 @@ The use of underscores to separate parts of a name is the original C and C++ sty
 ##### Note
 
 This rule is a default to use only if you have a choice.
-Often, you don't have a choice and must follow an established style for [consistency](/naming#Rl-name).
-
+Often, you don't have a choice and must follow an established style for [(consistency)](/naming#Rl-name).
 The need for consistency beats personal taste.
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Example
@@ -372,25 +356,26 @@ Readability.
 ##### Example
 
 Use digit separators to avoid long strings of digits
+
 ```cpp
-    auto c = 299'792'458; // m/s2
-    auto q2 = 0b0000'1111'0000'0000;
-    auto ss_number = 123'456'7890;
+auto c = 299'792'458; // m/s2
+auto q2 = 0b0000'1111'0000'0000;
+auto ss_number = 123'456'7890;
 ```
 
 ##### Example
 
 Use literal suffixes where clarification is needed
+
 ```cpp
-    auto hello = "Hello!"s; // a std::string
-    auto world = "world";   // a C-style string
-    auto interval = 100ms;  // using <chrono>
+auto hello = "Hello!"s; // a std::string
+auto world = "world";   // a C-style string
+auto interval = 100ms;  // using <chrono>
 ```
 
 ##### Note
 
-Literals should not be sprinkled all over the code as ["magic constants"](/expr#Res-magic),
-
+Literals should not be sprinkled all over the code as [("magic constants")](/expr#Res-magic),
 but it is still a good idea to make them readable where they are defined.
 It is easy to make a typo in a long string of integers.
 
@@ -405,33 +390,32 @@ Flag long digit sequences. The trouble is to define "long"; maybe 7.
 Too much space makes the text larger and distracts.
 
 ##### Example, bad
+
 ```cpp
-    #include < map >
-```
-```cpp
-    int main(int argc, char * argv [ ])
-    {
-        // ...
-    }
+#include < map >
+
+int main(int argc, char * argv [ ])
+{
+    // ...
+}
 ```
 
 ##### Example
+
 ```cpp
-    #include <map>
-```
-```cpp
-    int main(int argc, char* argv[])
-    {
-        // ...
-    }
+#include <map>
+
+int main(int argc, char* argv[])
+{
+    // ...
+}
 ```
 
 ##### Note
 
 Some IDEs have their own opinions and add distracting space.
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Note
@@ -453,48 +437,50 @@ When declaring a class use the following order
 
 Use the `public` before `protected` before `private` order.
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Example
+
 ```cpp
-    class X {
-    public:
-        // interface
-    protected:
-        // unchecked function for use by derived class implementations
-    private:
-        // implementation details
-    };
+class X {
+public:
+    // interface
+protected:
+    // unchecked function for use by derived class implementations
+private:
+    // implementation details
+};
 ```
 
 ##### Example
 
 Sometimes, the default order of members conflicts with a desire to separate the public interface from implementation details.
 In such cases, private types and functions can be placed with private data.
+
 ```cpp
-    class X {
-    public:
-        // interface
-    protected:
-        // unchecked function for use by derived class implementations
-    private:
-        // implementation details (types, functions, and data)
-    };
+class X {
+public:
+    // interface
+protected:
+    // unchecked function for use by derived class implementations
+private:
+    // implementation details (types, functions, and data)
+};
 ```
 
 ##### Example, bad
 
 Avoid multiple blocks of declarations of one access (e.g., `public`) dispersed among blocks of declarations with different access (e.g. `private`).
+
 ```cpp
-    class X {   // bad
-    public:
-        void f();
-    public:
-        int g();
-        // ...
-    };
+class X {   // bad
+public:
+    void f();
+public:
+    int g();
+    // ...
+};
 ```
 
 The use of macros to declare groups of members often leads to violation of any ordering rules.
@@ -504,7 +490,7 @@ However, using macros obscures what is being expressed anyway.
 
 Flag departures from the suggested order. There will be a lot of old code that doesn't follow this rule.
 
-### <a href="#" name="Rl-knr"></a>NL.17: Use K&R-derived layout
+### <a href="#" name="Rl-knr"></a>NL.17: Use K\&R-derived layout
 
 ##### Reason
 
@@ -514,50 +500,45 @@ This is the original C and C++ layout. It preserves vertical space well. It dist
 
 In the context of C++, this style is often called "Stroustrup".
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Example
+
 ```cpp
-    struct Cable {
-        int x;
+struct Cable {
+    int x;
+    // ...
+};
+
+double foo(int x)
+{
+    if (0 < x) {
         // ...
-    };
-```
-```cpp
-    double foo(int x)
-    {
-        if (0 < x) {
-            // ...
-        }
-```
-```cpp
-        switch (x) {
-        case 0:
-            // ...
-            break;
-        case amazing:
-            // ...
-            break;
-        default:
-            // ...
-            break;
-        }
-```
-```cpp
-        if (0 < x)
-            ++x;
-```
-```cpp
-        if (x < 0)
-            something();
-        else
-            something_else();
-```
-```cpp
-        return some_value;
     }
+
+    switch (x) {
+    case 0:
+        // ...
+        break;
+    case amazing:
+        // ...
+        break;
+    default:
+        // ...
+        break;
+    }
+
+    if (0 < x)
+        ++x;
+
+    if (x < 0)
+        something();
+    else
+        something_else();
+
+    return some_value;
+}
 ```
 
 Note the space between `if` and `(`
@@ -590,22 +571,21 @@ The C-style layout emphasizes use in expressions and grammar, whereas the C++-st
 The use in expressions argument doesn't hold for references.
 
 ##### Example
+
 ```cpp
-    T& operator[](size_t);   // OK
-    T &operator[](size_t);   // just strange
-    T & operator[](size_t);   // undecided
+T& operator[](size_t);   // OK
+T &operator[](size_t);   // just strange
+T & operator[](size_t);   // undecided
 ```
 
 ##### Note
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Enforcement
 
 Impossible in the face of history.
-
 
 ### <a href="#" name="Rl-misread"></a>NL.19: Avoid names that are easily misread
 
@@ -616,12 +596,12 @@ Not everyone has screens and printers that make it easy to distinguish all chara
 We easily confuse similarly spelled and slightly misspelled words.
 
 ##### Example
+
 ```cpp
-    int oO01lL = 6; // bad
-```
-```cpp
-    int splunk = 7;
-    int splonk = 8; // bad: splunk and splonk are easily confused
+int oO01lL = 6; // bad
+
+int splunk = 7;
+int splonk = 8; // bad: splunk and splonk are easily confused
 ```
 
 ##### Enforcement
@@ -636,9 +616,10 @@ Readability.
 It is really easy to overlook a statement when there is more on a line.
 
 ##### Example
+
 ```cpp
-    int x = 7; char* p = 29;    // don't
-    int x = 7; f(x);  ++x;      // don't
+int x = 7; char* p = 29;    // don't
+int x = 7; f(x);  ++x;      // don't
 ```
 
 ##### Enforcement
@@ -654,9 +635,7 @@ Minimizing confusion with the declarator syntax.
 
 ##### Note
 
-For details, see [ES.10](/expr#Res-name-one).
-
-
+For details, see [(ES.10)](/expr#Res-name-one).
 
 ### <a href="#" name="Rl-void"></a>NL.25: Don't use `void` as an argument type
 
@@ -665,20 +644,21 @@ For details, see [ES.10](/expr#Res-name-one).
 It's verbose and only needed where C compatibility matters.
 
 ##### Example
+
 ```cpp
-    void f(void);   // bad
-```
-```cpp
-    void g();       // better
+void f(void);   // bad
+
+void g();       // better
 ```
 
 ##### Note
 
 Even Dennis Ritchie deemed `void f(void)` an abomination.
 You can make an argument for that abomination in C when function prototypes were rare so that banning:
+
 ```cpp
-    int f();
-    f(1, 2, "weird but valid C89");   // hope that f() is defined int f(a, b, c) char* c; { /* ... */ }
+int f();
+f(1, 2, "weird but valid C89");   // hope that f() is defined int f(a, b, c) char* c; { /* ... */ }
 ```
 
 would have caused major problems, but not in the 21st century and in C++.
@@ -691,13 +671,13 @@ Conventional notation is more familiar to more programmers.
 Consistency in large code bases.
 
 ##### Example
+
 ```cpp
-    const int x = 7;    // OK
-    int const y = 9;    // bad
-```
-```cpp
-    const int *const p = nullptr;   // OK, constant pointer to constant int
-    int const *const p = nullptr;   // bad, constant pointer to constant int
+const int x = 7;    // OK
+int const y = 9;    // bad
+
+const int *const p = nullptr;   // OK, constant pointer to constant int
+int const *const p = nullptr;   // bad, constant pointer to constant int
 ```
 
 ##### Note
@@ -707,8 +687,7 @@ but they also confuse more people, especially novices relying on teaching materi
 
 As ever, remember that the aim of these naming and layout rules is consistency and that aesthetics vary immensely.
 
-This is a recommendation for [when you have no constraints or better ideas](/naming#S-naming).
-
+This is a recommendation for [(when you have no constraints or better ideas)](/naming#S-naming).
 This rule was added after many requests for guidance.
 
 ##### Enforcement

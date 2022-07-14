@@ -5,23 +5,16 @@ The aim is to help C++ programmers to write simpler, more efficient, more mainta
 
 Introduction summary:
 
-* [In.target: Target readership](/introduction#SS-readers)
-
-* [In.aims: Aims](/introduction#SS-aims)
-
-* [In.not: Non-aims](/introduction#SS-non)
-
-* [In.force: Enforcement](/introduction#SS-force)
-
-* [In.struct: The structure of this document](/introduction#SS-struct)
-
-* [In.sec: Major sections](/introduction#SS-sec)
-
+* [(In.target: Target readership)](/introduction#SS-readers)
+* [(In.aims: Aims)](/introduction#SS-aims)
+* [(In.not: Non-aims)](/introduction#SS-non)
+* [(In.force: Enforcement)](/introduction#SS-force)
+* [(In.struct: The structure of this document)](/introduction#SS-struct)
+* [(In.sec: Major sections)](/introduction#SS-sec)
 
 ## <a href="#" name="SS-readers"></a>In.target: Target readership
 
-All C++ programmers. This includes [programmers who might consider C](/cpl#S-cpl).
-
+All C++ programmers. This includes [(programmers who might consider C)](/cpl#S-cpl).
 
 ## <a href="#" name="SS-aims"></a>In.aims: Aims
 
@@ -36,11 +29,9 @@ Remember:
 
 Take the time to understand the implications of a guideline rule on your program.
 
-These guidelines are designed according to the "subset of superset" principle ([Stroustrup05](/unclassified#Stroustrup05)).
-
+These guidelines are designed according to the "subset of superset" principle ([(Stroustrup05)](/unclassified#Stroustrup05)).
 They do not simply define a subset of C++ to be used (for reliability, safety, performance, or whatever).
-Instead, they strongly recommend the use of a few simple "extensions" ([library components](/gsl#S-gsl))
-
+Instead, they strongly recommend the use of a few simple "extensions" ([(library components)](/gsl#S-gsl))
 that make the use of the most error-prone features of C++ redundant, so that they can be banned (in our set of rules).
 
 The rules emphasize static type safety and resource safety.
@@ -58,8 +49,7 @@ For example, hard-real-time programmers typically can't use free store (dynamic 
 We encourage the development of such more specific rules as addenda to these core guidelines.
 Build your ideal small foundation library and use that, rather than lowering your level of programming to glorified assembly code.
 
-The rules are designed to allow [gradual adoption](/modernizing#S-modernizing).
-
+The rules are designed to allow [(gradual adoption)](/modernizing#S-modernizing).
 
 Some rules aim to increase various forms of safety while others aim to reduce the likelihood of accidents, many do both.
 The guidelines aimed at preventing accidents often ban perfectly legal C++.
@@ -81,13 +71,11 @@ That is, a tool looks for violations and the tool returns links to violated rule
 The rules then provide reasons, examples of potential consequences of the violation, and suggested remedies.
 
 These guidelines are not intended to be a substitute for a tutorial treatment of C++.
-If you need a tutorial for some given level of experience, see [the references](/references#S-references).
-
+If you need a tutorial for some given level of experience, see [(the references)](/references#S-references).
 
 This is not a guide on how to convert old C++ code to more modern code.
 It is meant to articulate ideas for new code in a concrete fashion.
-However, see [the modernization section](/modernizing#S-modernizing) for some possible approaches to modernizing/rejuvenating/upgrading.
-
+However, see [(the modernization section)](/modernizing#S-modernizing) for some possible approaches to modernizing/rejuvenating/upgrading.
 Importantly, the rules support gradual adoption: It is typically infeasible to completely convert a large code base all at once.
 
 These guidelines are not meant to be complete or exact in every language-technical detail.
@@ -153,24 +141,22 @@ The profiles are intended to be used by tools, but also serve as an aid to the h
 We do not limit our comment in the **Enforcement** sections to things we know how to enforce; some comments are mere wishes that might inspire some tool builder.
 
 Tools that implement these rules shall respect the following syntax to explicitly suppress a rule:
+
 ```cpp
-    [[gsl::suppress(tag)]]
+[[gsl::suppress(tag)]]
 ```
 
 and optionally with a message (following usual C++11 standard attribute syntax):
+
 ```cpp
-    [[gsl::suppress(tag, justification: "message")]]
+[[gsl::suppress(tag, justification: "message")]]
 ```
 
 where
 
-* `tag` is the anchor name of the item where the Enforcement rule appears (e.g., for [C.134](/class#Rh-public) it is "Rh-public"), the
-
-name of a profile group-of-rules ("type", "bounds", or "lifetime"),
-or a specific rule in a profile ([type.4](/profile#Pro-type-cstylecast), or [bounds.2](/profile#Pro-bounds-arrayindex))
-
-
-
+* `tag` is the anchor name of the item where the Enforcement rule appears (e.g., for [(C.134)](/class#Rh-public) it is "Rh-public"), the
+  name of a profile group-of-rules ("type", "bounds", or "lifetime"),
+  or a specific rule in a profile ([((type.4)](/profile#Pro-type-cstylecast), or [bounds.2)](/profile#Pro-bounds-arrayindex))
 
 * `"message"` is a string literal
 
@@ -196,8 +182,7 @@ We hope that "mechanical" tools will improve with time to approximate what such 
 Also, we assume that the rules will be refined over time to make them more precise and checkable.
 
 A rule is aimed at being simple, rather than carefully phrased to mention every alternative and special case.
-Such information is found in the **Alternative** paragraphs and the [Discussion](/discussion#S-discussion) sections.
-
+Such information is found in the **Alternative** paragraphs and the [(Discussion)](/discussion#S-discussion) sections.
 If you don't understand a rule or disagree with it, please visit its **Discussion**.
 If you feel that a discussion is missing or incomplete, enter an [Issue](https://github.com/isocpp/CppCoreGuidelines/issues)
 explaining your concerns and possibly a corresponding PR.
@@ -205,79 +190,49 @@ explaining your concerns and possibly a corresponding PR.
 Examples are written to illustrate rules.
 
 * Examples are not intended to be production quality or to cover all tutorial dimensions.
-For example, many examples are language-technical and use names like `f`, `base`, and `x`.
+  For example, many examples are language-technical and use names like `f`, `base`, and `x`.
 * We try to ensure that "good" examples follow the Core Guidelines.
 * Comments are often illustrating rules where they would be unnecessary and/or distracting in "real code."
 * We assume knowledge of the standard library. For example, we use plain `vector` rather than `std::vector`.
 
 This is not a language manual.
 It is meant to be helpful, rather than complete, fully accurate on technical details, or a guide to existing code.
-Recommended information sources can be found in [the references](/references#S-references).
-
+Recommended information sources can be found in [(the references)](/references#S-references).
 
 ## <a href="#" name="SS-sec"></a>In.sec: Major sections
 
-* [In: Introduction](/introduction#S-introduction)
-
-* [P: Philosophy](/philosophy#S-philosophy)
-
-* [I: Interfaces](/interfaces#S-interfaces)
-
-* [F: Functions](/functions#S-functions)
-
-* [C: Classes and class hierarchies](/class#S-class)
-
-* [Enum: Enumerations](/enum#S-enum)
-
-* [R: Resource management](/resource#S-resource)
-
-* [ES: Expressions and statements](/expr#S-expr)
-
-* [Per: Performance](/performance#S-performance)
-
-* [CP: Concurrency and parallelism](/concurrency#S-concurrency)
-
-* [E: Error handling](/errors#S-errors)
-
-* [Con: Constants and immutability](/const#S-const)
-
-* [T: Templates and generic programming](/templates#S-templates)
-
-* [CPL: C-style programming](/cpl#S-cpl)
-
-* [SF: Source files](/source#S-source)
-
-* [SL: The Standard Library](/stdlib#S-stdlib)
-
+* [(In: Introduction)](/introduction#S-introduction)
+* [(P: Philosophy)](/philosophy#S-philosophy)
+* [(I: Interfaces)](/interfaces#S-interfaces)
+* [(F: Functions)](/functions#S-functions)
+* [(C: Classes and class hierarchies)](/class#S-class)
+* [(Enum: Enumerations)](/enum#S-enum)
+* [(R: Resource management)](/resource#S-resource)
+* [(ES: Expressions and statements)](/expr#S-expr)
+* [(Per: Performance)](/performance#S-performance)
+* [(CP: Concurrency and parallelism)](/concurrency#S-concurrency)
+* [(E: Error handling)](/errors#S-errors)
+* [(Con: Constants and immutability)](/const#S-const)
+* [(T: Templates and generic programming)](/templates#S-templates)
+* [(CPL: C-style programming)](/cpl#S-cpl)
+* [(SF: Source files)](/source#S-source)
+* [(SL: The Standard Library)](/stdlib#S-stdlib)
 
 Supporting sections:
 
-* [A: Architectural ideas](/A#S-A)
-
-* [NR: Non-Rules and myths](/not#S-not)
-
-* [RF: References](/references#S-references)
-
-* [Pro: Profiles](/profile#S-profile)
-
-* [GSL: Guidelines support library](/gsl#S-gsl)
-
-* [NL: Naming and layout suggestions](/naming#S-naming)
-
-* [FAQ: Answers to frequently asked questions](/faq#S-faq)
-
-* [Appendix A: Libraries](/libraries#S-libraries)
-
-* [Appendix B: Modernizing code](/modernizing#S-modernizing)
-
-* [Appendix C: Discussion](/discussion#S-discussion)
-
-* [Appendix D: Supporting tools](/tools#S-tools)
-
-* [Glossary](/glossary#S-glossary)
-
-* [To-do: Unclassified proto-rules](/unclassified#S-unclassified)
-
+* [(A: Architectural ideas)](/A#S-A)
+* [(NR: Non-Rules and myths)](/not#S-not)
+* [(RF: References)](/references#S-references)
+* [(Pro: Profiles)](/profile#S-profile)
+* [(GSL: Guidelines support library)](/gsl#S-gsl)
+* [(NL: Naming and layout suggestions)](/naming#S-naming)
+* [(FAQ: Answers to frequently asked questions)](/faq#S-faq)
+* [(Appendix A: Libraries)](/libraries#S-libraries)
+* [(Appendix B: Modernizing code)](/modernizing#S-modernizing)
+* [(Appendix C: Discussion)](/discussion#S-discussion)
+* [(Appendix D: Supporting tools)](/tools#S-tools)
+* [(Glossary)](/glossary#S-glossary)
+* [(To-do: Unclassified proto-rules)](/unclassified#S-unclassified)
 
 These sections are not orthogonal.
 
