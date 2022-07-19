@@ -62,6 +62,6 @@ export default {
   nextLinks: true,
   footer: true,
   footerEditLink: 'Edit this page on GitHub',
-  footerText: <>MIT {new Date().getFullYear()} © Nextra.</>,
+  footerText: <>C++ Core Guidelines {new Date().getFullYear()}.</>,
   unstable_faviconGlyph: '👋',
 }
