@@ -26,15 +26,10 @@ export default {
       <meta name="og:image" content="https://nextra.vercel.app/og.png" />
       <meta name="apple-mobile-web-app-title" content="Nextra" />
       <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-icon-180x180.png"
-      />
-      <link
         rel="icon"
         type="image/png"
-        sizes="192x192"
-        href="/android-icon-192x192.png"
+        sizes="196x196"
+        href="/favicon-196x196.png"
       />
       <link
         rel="icon"
