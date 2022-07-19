@@ -24,7 +24,7 @@ export default {
       <meta name="twitter:url" content="https://nextra.vercel.app" />
       <meta name="og:title" content="C++ Core Guidelines" />
       <meta name="og:image" content="https://nextra.vercel.app/og.png" />
-      <meta name="apple-mobile-web-app-title" content="Nextra" />
+      <meta name="apple-mobile-web-app-title" content="C++ Core Guidelines" />
       <link
         rel="icon"
         type="image/png"
