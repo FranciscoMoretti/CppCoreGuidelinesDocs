@@ -58,5 +58,4 @@ export default {
   footer: true,
   footerEditLink: '',
   footerText: <>C++ Core Guidelines {new Date().getFullYear()}.</>,
-  unstable_faviconGlyph: '👋',
 }
