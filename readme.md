@@ -1,22 +1,17 @@
 # CppCoreGuidelinesDocs
+A modern documentation site for "C++ Core Guidelines" that's user friendly and has better performance than official site.
 
-_Warning: this project is not production ready, API might change without notice._
+# CppCoreGuidelines
+[![C++ Core Guidelines](cpp_core_guidelines_logo_text.png)](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 
-[![](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra&c=1)
+>"Within C++ is a smaller, simpler, safer language struggling to get out."
+>-- <cite>Bjarne Stroustrup</cite>
 
-**Nextra** is a [Next.js](https://nextjs.org) and [MDX](https://mdxjs.com) powered, no-code site generator.
+The [C++ Core Guidelines](CppCoreGuidelines.md) are a collaborative effort led by Bjarne Stroustrup, much like the C++ language itself. They are the result of many
+person-years of discussion and design across a number of organizations. Their design encourages general applicability and broad adoption but
+they can be freely copied and modified to meet your organization's needs.
 
-![](/public/demo.png)
+[C++ Core Guidelines Repository](https://github.com/isocpp/CppCoreGuidelines)
 
-## Development
-
-The code of Nextra is under the [`core`](https://github.com/shuding/nextra/tree/core) branch.
-
-## Themes
-
-- [nextra-theme-docs](https://github.com/vercel/swr-site) ([demo](https://swr.vercel.app))
-- [nextra-theme-blog](https://github.com/shuding/site) ([demo](https://shud.in))
-
----
-
-Created by [@shuding](https://github.com/shuding) and [@pacocoursey](https://github.com/pacocoursey) at [Vercel](https://vercel.com). Released under the MIT license.
+# Techcnology
+Built with [Nextra](https://github.com/shuding/nextra). 
