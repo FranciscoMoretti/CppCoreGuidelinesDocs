@@ -20,8 +20,8 @@ export default {
       <meta name="og:description" content="C++ Core Guidelines" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content="/og.png" />
-      <meta name="twitter:site:domain" content="nextra.vercel.app" />
-      <meta name="twitter:url" content="https://nextra.vercel.app" />
+      <meta name="twitter:site:domain" content="cpp-core-guidelines-docs.vercel.app" />
+      <meta name="twitter:url" content="https://cpp-core-guidelines-docs.vercel.app/" />
       <meta name="og:title" content="C++ Core Guidelines" />
       <meta name="og:image" content="/og.png" />
       <meta name="apple-mobile-web-app-title" content="C++ Core Guidelines" />
