@@ -29,4 +29,5 @@ they can be freely copied and modified to meet your organization's needs.
 [C++ Core Guidelines Repository](https://github.com/isocpp/CppCoreGuidelines)
 
 # Techcnology
-Built with [Nextra](https://github.com/shuding/nextra). 
+- Built with [Nextra](https://github.com/shuding/nextra)
+- Hosted in [Vercel](https://vercel.com/)
